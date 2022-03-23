@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_Products>
+
+@{
+    ViewBag.Title = "صفحه ی اصلی";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+
+
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+        @{
+            if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="post-7 post type-post status-publish format-standard hentry category-1 tag-salam tag-17 tag-19 masonry-brick" id="post-7" style="position: absolute; top: 0px; left: 0px;">
+                        <div class="categories">
+                            <h3>@item.Tbl_Categoris.Title (@(item.DateEnd == null ? "فروش عادی" : "مزایده"))</h3>
+                            <div class="icons">
+                                <a class="hide">مخفی</a>
+                            </div>
+                        </div>
+                        <div class="min" style="height: auto;">
+                            <img style="width:250px;height:150px;margin-bottom:10px;" src="~/Content/Pics/ProductsPic/@item.Image" />
+                            <h2>
+                                <a href="#" title="@item.Title">@item.Title</a>
+                            </h2>
+
+                            <p>@item.Description</p>
+                            <span class="Price">قیمت: <strong>@item.Price</strong>تومان</span>
+                        </div>
+                        <a class="more" href="~/Home/Products/@item.ID">نمایش جزئیات</a>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>موردی یافت نشد</p>
+            }
+        }
+
+    </div>
+</div>

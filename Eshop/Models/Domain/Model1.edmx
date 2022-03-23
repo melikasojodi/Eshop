@@ -1,0 +1,1544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EsamShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_Auctions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Confirm_Price" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Categoris">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="WebSite" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Ip" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Confirm_comm" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_ConfEmail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="DateExpire" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tbl_ConfMobile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="DateExpire" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tbl_ContactUs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Read" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Filters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilterGroupID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Filters_Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilterID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_GroupFilters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_GroupFilters_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TopicID" Type="int" Nullable="false" />
+          <Property Name="FilterID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Payments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupNo" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="TransNo" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="BankGetNo" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_ProductPics">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PicName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ExistCount" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Visit" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="DateEnd" Type="datetime" />
+          <Property Name="Weight" Type="int" Nullable="false" />
+          <Property Name="TopicID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Sales">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="GroupNo" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="Payment" Type="bit" Nullable="false" />
+          <Property Name="TransNo" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="CodeRahgiri" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountProductInPage" Type="tinyint" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailPass" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SMTP" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_ShopingCart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="CookiNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Slides">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="Enable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_StatusType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_TempSales">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopingCart_ProductID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="BankGetNo" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Access" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ShabaNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Shire" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="phone" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="NatCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_Auctions_Tbl_Products">
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" />
+          <End Role="Tbl_Auctions" Type="Self.Tbl_Auctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Auctions">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Auctions_Tbl_Users">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1" />
+          <End Role="Tbl_Auctions" Type="Self.Tbl_Auctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Auctions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Categoris_Tbl_Categoris">
+          <End Role="Tbl_Categoris" Type="Self.Tbl_Categoris" Multiplicity="1" />
+          <End Role="Tbl_Categoris1" Type="Self.Tbl_Categoris" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Categoris">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Categoris1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Comment_Tbl_Products">
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" />
+          <End Role="Tbl_Comment" Type="Self.Tbl_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Comment">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ConfEmail_Tbl_Users">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tbl_ConfEmail" Type="Self.Tbl_ConfEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ConfEmail">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ConfMobile_Tbl_Users">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tbl_ConfMobile" Type="Self.Tbl_ConfMobile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ConfMobile">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Filters_Products_Tbl_Filters">
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" />
+          <End Role="Tbl_Filters_Products" Type="Self.Tbl_Filters_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Filters_Products">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Filters_Products_Tbl_Filters1">
+          <End Role="Tbl_Filters" Type="Self.Tbl_Filters" Multiplicity="1" />
+          <End Role="Tbl_Filters_Products" Type="Self.Tbl_Filters_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Filters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Filters_Products">
+              <PropertyRef Name="FilterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Filters_Tbl_GroupFilters">
+          <End Role="Tbl_GroupFilters" Type="Self.Tbl_GroupFilters" Multiplicity="1" />
+          <End Role="Tbl_Filters" Type="Self.Tbl_Filters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_GroupFilters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Filters">
+              <PropertyRef Name="FilterGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_GroupFilters_Categories_Tbl_Categoris">
+          <End Role="Tbl_Categoris" Type="Self.Tbl_Categoris" Multiplicity="1" />
+          <End Role="Tbl_GroupFilters_Categories" Type="Self.Tbl_GroupFilters_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Categoris">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_GroupFilters_Categories">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters">
+          <End Role="Tbl_GroupFilters" Type="Self.Tbl_GroupFilters" Multiplicity="1" />
+          <End Role="Tbl_GroupFilters_Categories" Type="Self.Tbl_GroupFilters_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_GroupFilters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_GroupFilters_Categories">
+              <PropertyRef Name="FilterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_GroupFilters_Tbl_GroupFilters">
+          <End Role="Tbl_GroupFilters" Type="Self.Tbl_GroupFilters" Multiplicity="0..1" />
+          <End Role="Tbl_GroupFilters1" Type="Self.Tbl_GroupFilters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_GroupFilters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_GroupFilters1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ProductPics_Tbl_Products">
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" />
+          <End Role="Tbl_ProductPics" Type="Self.Tbl_ProductPics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ProductPics">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Products_Tbl_Users">
+          <End Role="Tbl_Categoris" Type="Self.Tbl_Categoris" Multiplicity="1" />
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Categoris">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Products">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Products_Tbl_Users1">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1" />
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Products">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sales_Tbl_Products">
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" />
+          <End Role="Tbl_Sales" Type="Self.Tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Sales">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sales_Tbl_Sales">
+          <End Role="Tbl_StatusType" Type="Self.Tbl_StatusType" Multiplicity="1" />
+          <End Role="Tbl_Sales" Type="Self.Tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_StatusType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Sales">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sales_Tbl_Users">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1" />
+          <End Role="Tbl_Sales" Type="Self.Tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Sales">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ShopingCart_Tbl_Products">
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" />
+          <End Role="Tbl_ShopingCart" Type="Self.Tbl_ShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ShopingCart">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ShopingCart_Tbl_Users">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1" />
+          <End Role="Tbl_ShopingCart" Type="Self.Tbl_ShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ShopingCart">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_TempSales_Tbl_ShopingCart">
+          <End Role="Tbl_ShopingCart" Type="Self.Tbl_ShopingCart" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tbl_TempSales" Type="Self.Tbl_TempSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ShopingCart">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_TempSales">
+              <PropertyRef Name="ShopingCart_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EsamShopDBModelStoreContainer">
+          <EntitySet Name="Tbl_Auctions" EntityType="Self.Tbl_Auctions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Categoris" EntityType="Self.Tbl_Categoris" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Comment" EntityType="Self.Tbl_Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_ConfEmail" EntityType="Self.Tbl_ConfEmail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_ConfMobile" EntityType="Self.Tbl_ConfMobile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_ContactUs" EntityType="Self.Tbl_ContactUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Filters" EntityType="Self.Tbl_Filters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Filters_Products" EntityType="Self.Tbl_Filters_Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_GroupFilters" EntityType="Self.Tbl_GroupFilters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_GroupFilters_Categories" EntityType="Self.Tbl_GroupFilters_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Menu" EntityType="Self.Tbl_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Payments" EntityType="Self.Tbl_Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_ProductPics" EntityType="Self.Tbl_ProductPics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Products" EntityType="Self.Tbl_Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Sales" EntityType="Self.Tbl_Sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Setting" EntityType="Self.Tbl_Setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_ShopingCart" EntityType="Self.Tbl_ShopingCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Slides" EntityType="Self.Tbl_Slides" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_StatusType" EntityType="Self.Tbl_StatusType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_TempSales" EntityType="Self.Tbl_TempSales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Users" EntityType="Self.Tbl_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tbl_Auctions_Tbl_Products" Association="Self.FK_Tbl_Auctions_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_Auctions" EntitySet="Tbl_Auctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Auctions_Tbl_Users" Association="Self.FK_Tbl_Auctions_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Auctions" EntitySet="Tbl_Auctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Categoris_Tbl_Categoris" Association="Self.FK_Tbl_Categoris_Tbl_Categoris">
+            <End Role="Tbl_Categoris" EntitySet="Tbl_Categoris" />
+            <End Role="Tbl_Categoris1" EntitySet="Tbl_Categoris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Comment_Tbl_Products" Association="Self.FK_Tbl_Comment_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_Comment" EntitySet="Tbl_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConfEmail_Tbl_Users" Association="Self.FK_Tbl_ConfEmail_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_ConfEmail" EntitySet="Tbl_ConfEmail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConfMobile_Tbl_Users" Association="Self.FK_Tbl_ConfMobile_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_ConfMobile" EntitySet="Tbl_ConfMobile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Filters_Products_Tbl_Filters" Association="Self.FK_Tbl_Filters_Products_Tbl_Filters">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_Filters_Products" EntitySet="Tbl_Filters_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Filters_Products_Tbl_Filters1" Association="Self.FK_Tbl_Filters_Products_Tbl_Filters1">
+            <End Role="Tbl_Filters" EntitySet="Tbl_Filters" />
+            <End Role="Tbl_Filters_Products" EntitySet="Tbl_Filters_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Filters_Tbl_GroupFilters" Association="Self.FK_Tbl_Filters_Tbl_GroupFilters">
+            <End Role="Tbl_GroupFilters" EntitySet="Tbl_GroupFilters" />
+            <End Role="Tbl_Filters" EntitySet="Tbl_Filters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GroupFilters_Categories_Tbl_Categoris" Association="Self.FK_Tbl_GroupFilters_Categories_Tbl_Categoris">
+            <End Role="Tbl_Categoris" EntitySet="Tbl_Categoris" />
+            <End Role="Tbl_GroupFilters_Categories" EntitySet="Tbl_GroupFilters_Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters" Association="Self.FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters">
+            <End Role="Tbl_GroupFilters" EntitySet="Tbl_GroupFilters" />
+            <End Role="Tbl_GroupFilters_Categories" EntitySet="Tbl_GroupFilters_Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GroupFilters_Tbl_GroupFilters" Association="Self.FK_Tbl_GroupFilters_Tbl_GroupFilters">
+            <End Role="Tbl_GroupFilters" EntitySet="Tbl_GroupFilters" />
+            <End Role="Tbl_GroupFilters1" EntitySet="Tbl_GroupFilters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ProductPics_Tbl_Products" Association="Self.FK_Tbl_ProductPics_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_ProductPics" EntitySet="Tbl_ProductPics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Products_Tbl_Users" Association="Self.FK_Tbl_Products_Tbl_Users">
+            <End Role="Tbl_Categoris" EntitySet="Tbl_Categoris" />
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Products_Tbl_Users1" Association="Self.FK_Tbl_Products_Tbl_Users1">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sales_Tbl_Products" Association="Self.FK_Tbl_Sales_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_Sales" EntitySet="Tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sales_Tbl_Sales" Association="Self.FK_Tbl_Sales_Tbl_Sales">
+            <End Role="Tbl_StatusType" EntitySet="Tbl_StatusType" />
+            <End Role="Tbl_Sales" EntitySet="Tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sales_Tbl_Users" Association="Self.FK_Tbl_Sales_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Sales" EntitySet="Tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ShopingCart_Tbl_Products" Association="Self.FK_Tbl_ShopingCart_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_ShopingCart" EntitySet="Tbl_ShopingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ShopingCart_Tbl_Users" Association="Self.FK_Tbl_ShopingCart_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_ShopingCart" EntitySet="Tbl_ShopingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_TempSales_Tbl_ShopingCart" Association="Self.FK_Tbl_TempSales_Tbl_ShopingCart">
+            <End Role="Tbl_ShopingCart" EntitySet="Tbl_ShopingCart" />
+            <End Role="Tbl_TempSales" EntitySet="Tbl_TempSales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EsamShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Categoris">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tbl_Categoris1" Relationship="Self.FK_Tbl_Categoris_Tbl_Categoris" FromRole="Tbl_Categoris" ToRole="Tbl_Categoris1" />
+          <NavigationProperty Name="Tbl_Categoris2" Relationship="Self.FK_Tbl_Categoris_Tbl_Categoris" FromRole="Tbl_Categoris1" ToRole="Tbl_Categoris" />
+          <NavigationProperty Name="Tbl_GroupFilters_Categories" Relationship="Self.FK_Tbl_GroupFilters_Categories_Tbl_Categoris" FromRole="Tbl_Categoris" ToRole="Tbl_GroupFilters_Categories" />
+          <NavigationProperty Name="Tbl_Products" Relationship="Self.FK_Tbl_Products_Tbl_Users" FromRole="Tbl_Categoris" ToRole="Tbl_Products" />
+        </EntityType>
+        <EntityType Name="Tbl_Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WebSite" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Confirm_comm" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tbl_Products" Relationship="Self.FK_Tbl_Comment_Tbl_Products" FromRole="Tbl_Comment" ToRole="Tbl_Products" />
+        </EntityType>
+        <EntityType Name="Tbl_ConfEmail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tbl_Users" Relationship="EsamShopDBModel.FK_Tbl_ConfEmail_Tbl_Users" FromRole="Tbl_ConfEmail" ToRole="Tbl_Users" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="DateExpire" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Tbl_ConfMobile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tbl_Users" Relationship="EsamShopDBModel.FK_Tbl_ConfMobile_Tbl_Users" FromRole="Tbl_ConfMobile" ToRole="Tbl_Users" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="DateExpire" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Tbl_GroupFilters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tbl_GroupFilters1" Relationship="Self.FK_Tbl_GroupFilters_Tbl_GroupFilters" FromRole="Tbl_GroupFilters" ToRole="Tbl_GroupFilters1" />
+          <NavigationProperty Name="Tbl_GroupFilters2" Relationship="Self.FK_Tbl_GroupFilters_Tbl_GroupFilters" FromRole="Tbl_GroupFilters1" ToRole="Tbl_GroupFilters" />
+          <NavigationProperty Name="Tbl_GroupFilters_Categories" Relationship="EsamShopDBModel.FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters" FromRole="Tbl_GroupFilters" ToRole="Tbl_GroupFilters_Categories" />
+          <NavigationProperty Name="Tbl_Filters" Relationship="EsamShopDBModel.FK_Tbl_Filters_Tbl_GroupFilters" FromRole="Tbl_GroupFilters" ToRole="Tbl_Filters" />
+        </EntityType>
+        <EntityType Name="Tbl_GroupFilters_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+          <Property Name="FilterID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tbl_Categoris" Relationship="Self.FK_Tbl_GroupFilters_Categories_Tbl_Categoris" FromRole="Tbl_GroupFilters_Categories" ToRole="Tbl_Categoris" />
+          <NavigationProperty Name="Tbl_GroupFilters" Relationship="EsamShopDBModel.FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters" FromRole="Tbl_GroupFilters_Categories" ToRole="Tbl_GroupFilters" />
+        </EntityType>
+        <EntityType Name="Tbl_Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Payments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupNo" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="TransNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BankGetNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_ProductPics">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PicName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tbl_Products" Relationship="Self.FK_Tbl_ProductPics_Tbl_Products" FromRole="Tbl_ProductPics" ToRole="Tbl_Products" />
+        </EntityType>
+        <EntityType Name="Tbl_Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExistCount" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Visit" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <Property Name="Weight" Type="Int32" Nullable="false" />
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tbl_Categoris" Relationship="Self.FK_Tbl_Products_Tbl_Users" FromRole="Tbl_Products" ToRole="Tbl_Categoris" />
+          <NavigationProperty Name="Tbl_Comment" Relationship="Self.FK_Tbl_Comment_Tbl_Products" FromRole="Tbl_Products" ToRole="Tbl_Comment" />
+          <NavigationProperty Name="Tbl_ProductPics" Relationship="Self.FK_Tbl_ProductPics_Tbl_Products" FromRole="Tbl_Products" ToRole="Tbl_ProductPics" />
+          <NavigationProperty Name="Tbl_Sales" Relationship="Self.FK_Tbl_Sales_Tbl_Products" FromRole="Tbl_Products" ToRole="Tbl_Sales" />
+          <NavigationProperty Name="Tbl_Auctions" Relationship="EsamShopDBModel.FK_Tbl_Auctions_Tbl_Products" FromRole="Tbl_Products" ToRole="Tbl_Auctions" />
+          <NavigationProperty Name="Tbl_ShopingCart" Relationship="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Products" FromRole="Tbl_Products" ToRole="Tbl_ShopingCart" />
+          <NavigationProperty Name="Tbl_Users" Relationship="EsamShopDBModel.FK_Tbl_Products_Tbl_Users1" FromRole="Tbl_Products" ToRole="Tbl_Users" />
+          <NavigationProperty Name="Tbl_Filters_Products" Relationship="EsamShopDBModel.FK_Tbl_Filters_Products_Tbl_Filters" FromRole="Tbl_Products" ToRole="Tbl_Filters_Products" />
+        </EntityType>
+        <EntityType Name="Tbl_Sales">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="GroupNo" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="Payment" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tbl_Products" Relationship="Self.FK_Tbl_Sales_Tbl_Products" FromRole="Tbl_Sales" ToRole="Tbl_Products" />
+          <NavigationProperty Name="Tbl_StatusType" Relationship="Self.FK_Tbl_Sales_Tbl_Sales" FromRole="Tbl_Sales" ToRole="Tbl_StatusType" />
+          <Property Name="TransNo" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="CodeRahgiri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Users" Relationship="EsamShopDBModel.FK_Tbl_Sales_Tbl_Users" FromRole="Tbl_Sales" ToRole="Tbl_Users" />
+        </EntityType>
+        <EntityType Name="Tbl_Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountProductInPage" Type="Byte" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailPass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SMTP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Slides">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Enable" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_StatusType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tbl_Sales" Relationship="Self.FK_Tbl_Sales_Tbl_Sales" FromRole="Tbl_StatusType" ToRole="Tbl_Sales" />
+        </EntityType>
+        <Association Name="FK_Tbl_Categoris_Tbl_Categoris">
+          <End Role="Tbl_Categoris" Type="Self.Tbl_Categoris" Multiplicity="1" />
+          <End Role="Tbl_Categoris1" Type="Self.Tbl_Categoris" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Categoris">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Categoris1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_GroupFilters_Categories_Tbl_Categoris">
+          <End Role="Tbl_Categoris" Type="Self.Tbl_Categoris" Multiplicity="1" />
+          <End Role="Tbl_GroupFilters_Categories" Type="Self.Tbl_GroupFilters_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Categoris">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_GroupFilters_Categories">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Products_Tbl_Users">
+          <End Role="Tbl_Categoris" Type="Self.Tbl_Categoris" Multiplicity="1" />
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Categoris">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Products">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Comment_Tbl_Products">
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" />
+          <End Role="Tbl_Comment" Type="Self.Tbl_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Comment">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_GroupFilters_Tbl_GroupFilters">
+          <End Role="Tbl_GroupFilters" Type="Self.Tbl_GroupFilters" Multiplicity="0..1" />
+          <End Role="Tbl_GroupFilters1" Type="Self.Tbl_GroupFilters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_GroupFilters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_GroupFilters1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ProductPics_Tbl_Products">
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tbl_ProductPics" Type="Self.Tbl_ProductPics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ProductPics">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sales_Tbl_Products">
+          <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" />
+          <End Role="Tbl_Sales" Type="Self.Tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Sales">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sales_Tbl_Sales">
+          <End Role="Tbl_StatusType" Type="Self.Tbl_StatusType" Multiplicity="1" />
+          <End Role="Tbl_Sales" Type="Self.Tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_StatusType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Sales">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataBase" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Categoris" EntityType="Self.Tbl_Categoris" />
+          <EntitySet Name="Tbl_Comment" EntityType="Self.Tbl_Comment" />
+          <EntitySet Name="Tbl_ConfEmail" EntityType="Self.Tbl_ConfEmail" />
+          <EntitySet Name="Tbl_ConfMobile" EntityType="Self.Tbl_ConfMobile" />
+          <EntitySet Name="Tbl_GroupFilters" EntityType="Self.Tbl_GroupFilters" />
+          <EntitySet Name="Tbl_GroupFilters_Categories" EntityType="Self.Tbl_GroupFilters_Categories" />
+          <EntitySet Name="Tbl_Menu" EntityType="Self.Tbl_Menu" />
+          <EntitySet Name="Tbl_Payments" EntityType="Self.Tbl_Payments" />
+          <EntitySet Name="Tbl_ProductPics" EntityType="Self.Tbl_ProductPics" />
+          <EntitySet Name="Tbl_Products" EntityType="Self.Tbl_Products" />
+          <EntitySet Name="Tbl_Sales" EntityType="Self.Tbl_Sales" />
+          <EntitySet Name="Tbl_Setting" EntityType="Self.Tbl_Setting" />
+          <EntitySet Name="Tbl_Slides" EntityType="Self.Tbl_Slides" />
+          <EntitySet Name="Tbl_StatusType" EntityType="Self.Tbl_StatusType" />
+          <AssociationSet Name="FK_Tbl_Categoris_Tbl_Categoris" Association="Self.FK_Tbl_Categoris_Tbl_Categoris">
+            <End Role="Tbl_Categoris" EntitySet="Tbl_Categoris" />
+            <End Role="Tbl_Categoris1" EntitySet="Tbl_Categoris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GroupFilters_Categories_Tbl_Categoris" Association="Self.FK_Tbl_GroupFilters_Categories_Tbl_Categoris">
+            <End Role="Tbl_Categoris" EntitySet="Tbl_Categoris" />
+            <End Role="Tbl_GroupFilters_Categories" EntitySet="Tbl_GroupFilters_Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Products_Tbl_Users" Association="Self.FK_Tbl_Products_Tbl_Users">
+            <End Role="Tbl_Categoris" EntitySet="Tbl_Categoris" />
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Comment_Tbl_Products" Association="Self.FK_Tbl_Comment_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_Comment" EntitySet="Tbl_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GroupFilters_Tbl_GroupFilters" Association="Self.FK_Tbl_GroupFilters_Tbl_GroupFilters">
+            <End Role="Tbl_GroupFilters" EntitySet="Tbl_GroupFilters" />
+            <End Role="Tbl_GroupFilters1" EntitySet="Tbl_GroupFilters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ProductPics_Tbl_Products" Association="Self.FK_Tbl_ProductPics_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_ProductPics" EntitySet="Tbl_ProductPics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sales_Tbl_Products" Association="Self.FK_Tbl_Sales_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_Sales" EntitySet="Tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sales_Tbl_Sales" Association="Self.FK_Tbl_Sales_Tbl_Sales">
+            <End Role="Tbl_StatusType" EntitySet="Tbl_StatusType" />
+            <End Role="Tbl_Sales" EntitySet="Tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters" Association="EsamShopDBModel.FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters">
+            <End Role="Tbl_GroupFilters" EntitySet="Tbl_GroupFilters" />
+            <End Role="Tbl_GroupFilters_Categories" EntitySet="Tbl_GroupFilters_Categories" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_Auctions" EntityType="EsamShopDBModel.Tbl_Auctions" />
+          <AssociationSet Name="FK_Tbl_Auctions_Tbl_Products" Association="EsamShopDBModel.FK_Tbl_Auctions_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_Auctions" EntitySet="Tbl_Auctions" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_ShopingCart" EntityType="EsamShopDBModel.Tbl_ShopingCart" />
+          <EntitySet Name="Tbl_TempSales" EntityType="EsamShopDBModel.Tbl_TempSales" />
+          <AssociationSet Name="FK_Tbl_ShopingCart_Tbl_Products" Association="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Products">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_ShopingCart" EntitySet="Tbl_ShopingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_TempSales_Tbl_ShopingCart" Association="EsamShopDBModel.FK_Tbl_TempSales_Tbl_ShopingCart">
+            <End Role="Tbl_ShopingCart" EntitySet="Tbl_ShopingCart" />
+            <End Role="Tbl_TempSales" EntitySet="Tbl_TempSales" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_ContactUs" EntityType="EsamShopDBModel.Tbl_ContactUs" />
+          <EntitySet Name="Tbl_Users" EntityType="EsamShopDBModel.Tbl_Users" />
+          <AssociationSet Name="FK_Tbl_Auctions_Tbl_Users" Association="EsamShopDBModel.FK_Tbl_Auctions_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Auctions" EntitySet="Tbl_Auctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConfEmail_Tbl_Users" Association="EsamShopDBModel.FK_Tbl_ConfEmail_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_ConfEmail" EntitySet="Tbl_ConfEmail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConfMobile_Tbl_Users" Association="EsamShopDBModel.FK_Tbl_ConfMobile_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_ConfMobile" EntitySet="Tbl_ConfMobile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Products_Tbl_Users1" Association="EsamShopDBModel.FK_Tbl_Products_Tbl_Users1">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sales_Tbl_Users" Association="EsamShopDBModel.FK_Tbl_Sales_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Sales" EntitySet="Tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ShopingCart_Tbl_Users" Association="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_ShopingCart" EntitySet="Tbl_ShopingCart" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_Filters" EntityType="EsamShopDBModel.Tbl_Filters" />
+          <EntitySet Name="Tbl_Filters_Products" EntityType="EsamShopDBModel.Tbl_Filters_Products" />
+          <AssociationSet Name="FK_Tbl_Filters_Products_Tbl_Filters1" Association="EsamShopDBModel.FK_Tbl_Filters_Products_Tbl_Filters1">
+            <End Role="Tbl_Filters" EntitySet="Tbl_Filters" />
+            <End Role="Tbl_Filters_Products" EntitySet="Tbl_Filters_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Filters_Tbl_GroupFilters" Association="EsamShopDBModel.FK_Tbl_Filters_Tbl_GroupFilters">
+            <End Role="Tbl_GroupFilters" EntitySet="Tbl_GroupFilters" />
+            <End Role="Tbl_Filters" EntitySet="Tbl_Filters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Filters_Products_Tbl_Filters" Association="EsamShopDBModel.FK_Tbl_Filters_Products_Tbl_Filters">
+            <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+            <End Role="Tbl_Filters_Products" EntitySet="Tbl_Filters_Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters">
+          <End Type="EsamShopDBModel.Tbl_GroupFilters" Role="Tbl_GroupFilters" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_GroupFilters_Categories" Role="Tbl_GroupFilters_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_GroupFilters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_GroupFilters_Categories">
+              <PropertyRef Name="FilterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_Auctions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Confirm_Price" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tbl_Products" Relationship="EsamShopDBModel.FK_Tbl_Auctions_Tbl_Products" FromRole="Tbl_Auctions" ToRole="Tbl_Products" />
+          <NavigationProperty Name="Tbl_Users" Relationship="EsamShopDBModel.FK_Tbl_Auctions_Tbl_Users" FromRole="Tbl_Auctions" ToRole="Tbl_Users" />
+        </EntityType>
+        <Association Name="FK_Tbl_Auctions_Tbl_Products">
+          <End Type="EsamShopDBModel.Tbl_Products" Role="Tbl_Products" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_Auctions" Role="Tbl_Auctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Auctions">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_ShopingCart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="CookiNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tbl_Products" Relationship="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Products" FromRole="Tbl_ShopingCart" ToRole="Tbl_Products" />
+          <NavigationProperty Name="Tbl_TempSales" Relationship="EsamShopDBModel.FK_Tbl_TempSales_Tbl_ShopingCart" FromRole="Tbl_ShopingCart" ToRole="Tbl_TempSales" />
+          <NavigationProperty Name="Tbl_Users" Relationship="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Users" FromRole="Tbl_ShopingCart" ToRole="Tbl_Users" />
+        </EntityType>
+        <EntityType Name="Tbl_TempSales">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopingCart_ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BankGetNo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tbl_ShopingCart" Relationship="EsamShopDBModel.FK_Tbl_TempSales_Tbl_ShopingCart" FromRole="Tbl_TempSales" ToRole="Tbl_ShopingCart" />
+        </EntityType>
+        <Association Name="FK_Tbl_ShopingCart_Tbl_Products">
+          <End Type="EsamShopDBModel.Tbl_Products" Role="Tbl_Products" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_ShopingCart" Role="Tbl_ShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ShopingCart">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_TempSales_Tbl_ShopingCart">
+          <End Type="EsamShopDBModel.Tbl_ShopingCart" Role="Tbl_ShopingCart" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EsamShopDBModel.Tbl_TempSales" Role="Tbl_TempSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ShopingCart">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_TempSales">
+              <PropertyRef Name="ShopingCart_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_ContactUs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Read" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Access" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ShabaNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Shire" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="NatCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Tbl_Auctions" Relationship="EsamShopDBModel.FK_Tbl_Auctions_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_Auctions" />
+          <NavigationProperty Name="Tbl_ConfEmail" Relationship="EsamShopDBModel.FK_Tbl_ConfEmail_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_ConfEmail" />
+          <NavigationProperty Name="Tbl_ConfMobile" Relationship="EsamShopDBModel.FK_Tbl_ConfMobile_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_ConfMobile" />
+          <NavigationProperty Name="Tbl_Products" Relationship="EsamShopDBModel.FK_Tbl_Products_Tbl_Users1" FromRole="Tbl_Users" ToRole="Tbl_Products" />
+          <NavigationProperty Name="Tbl_Sales" Relationship="EsamShopDBModel.FK_Tbl_Sales_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_Sales" />
+          <NavigationProperty Name="Tbl_ShopingCart" Relationship="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_ShopingCart" />
+        </EntityType>
+        <Association Name="FK_Tbl_Auctions_Tbl_Users">
+          <End Type="EsamShopDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_Auctions" Role="Tbl_Auctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Auctions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ConfEmail_Tbl_Users">
+          <End Type="EsamShopDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EsamShopDBModel.Tbl_ConfEmail" Role="Tbl_ConfEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ConfEmail">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ConfMobile_Tbl_Users">
+          <End Type="EsamShopDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EsamShopDBModel.Tbl_ConfMobile" Role="Tbl_ConfMobile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ConfMobile">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Products_Tbl_Users1">
+          <End Type="EsamShopDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_Products" Role="Tbl_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Products">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sales_Tbl_Users">
+          <End Type="EsamShopDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_Sales" Role="Tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Sales">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ShopingCart_Tbl_Users">
+          <End Type="EsamShopDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_ShopingCart" Role="Tbl_ShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_ShopingCart">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_Filters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilterGroupID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Filters_Products" Relationship="EsamShopDBModel.FK_Tbl_Filters_Products_Tbl_Filters1" FromRole="Tbl_Filters" ToRole="Tbl_Filters_Products" />
+          <NavigationProperty Name="Tbl_GroupFilters" Relationship="EsamShopDBModel.FK_Tbl_Filters_Tbl_GroupFilters" FromRole="Tbl_Filters" ToRole="Tbl_GroupFilters" />
+        </EntityType>
+        <EntityType Name="Tbl_Filters_Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilterID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tbl_Filters" Relationship="EsamShopDBModel.FK_Tbl_Filters_Products_Tbl_Filters1" FromRole="Tbl_Filters_Products" ToRole="Tbl_Filters" />
+          <NavigationProperty Name="Tbl_Products" Relationship="EsamShopDBModel.FK_Tbl_Filters_Products_Tbl_Filters" FromRole="Tbl_Filters_Products" ToRole="Tbl_Products" />
+        </EntityType>
+        <Association Name="FK_Tbl_Filters_Products_Tbl_Filters1">
+          <End Type="EsamShopDBModel.Tbl_Filters" Role="Tbl_Filters" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_Filters_Products" Role="Tbl_Filters_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Filters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Filters_Products">
+              <PropertyRef Name="FilterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Filters_Tbl_GroupFilters">
+          <End Type="EsamShopDBModel.Tbl_GroupFilters" Role="Tbl_GroupFilters" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_Filters" Role="Tbl_Filters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_GroupFilters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Filters">
+              <PropertyRef Name="FilterGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Filters_Products_Tbl_Filters">
+          <End Type="EsamShopDBModel.Tbl_Products" Role="Tbl_Products" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_Filters_Products" Role="Tbl_Filters_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Filters_Products">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EsamShopDBModelStoreContainer" CdmEntityContainer="DataBase">
+          <EntitySetMapping Name="Tbl_Categoris">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Categoris">
+              <MappingFragment StoreEntitySet="Tbl_Categoris">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Comment">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Comment">
+              <MappingFragment StoreEntitySet="Tbl_Comment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="Confirm_comm" ColumnName="Confirm_comm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ConfEmail">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_ConfEmail">
+              <MappingFragment StoreEntitySet="Tbl_ConfEmail">
+                <ScalarProperty Name="DateExpire" ColumnName="DateExpire" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ConfMobile">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_ConfMobile">
+              <MappingFragment StoreEntitySet="Tbl_ConfMobile">
+                <ScalarProperty Name="DateExpire" ColumnName="DateExpire" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_GroupFilters">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_GroupFilters">
+              <MappingFragment StoreEntitySet="Tbl_GroupFilters">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_GroupFilters_Categories">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_GroupFilters_Categories">
+              <MappingFragment StoreEntitySet="Tbl_GroupFilters_Categories">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="FilterID" ColumnName="FilterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Menu">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Menu">
+              <MappingFragment StoreEntitySet="Tbl_Menu">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Payments">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Payments">
+              <MappingFragment StoreEntitySet="Tbl_Payments">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GroupNo" ColumnName="GroupNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="TransNo" ColumnName="TransNo" />
+                <ScalarProperty Name="BankGetNo" ColumnName="BankGetNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ProductPics">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_ProductPics">
+              <MappingFragment StoreEntitySet="Tbl_ProductPics">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="PicName" ColumnName="PicName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Products">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Products">
+              <MappingFragment StoreEntitySet="Tbl_Products">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ExistCount" ColumnName="ExistCount" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Visit" ColumnName="Visit" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Sales">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Sales">
+              <MappingFragment StoreEntitySet="Tbl_Sales">
+                <ScalarProperty Name="CodeRahgiri" ColumnName="CodeRahgiri" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="TransNo" ColumnName="TransNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GroupNo" ColumnName="GroupNo" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Setting">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Setting">
+              <MappingFragment StoreEntitySet="Tbl_Setting">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CountProductInPage" ColumnName="CountProductInPage" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailPass" ColumnName="EmailPass" />
+                <ScalarProperty Name="SMTP" ColumnName="SMTP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Slides">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Slides">
+              <MappingFragment StoreEntitySet="Tbl_Slides">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_StatusType">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_StatusType">
+              <MappingFragment StoreEntitySet="Tbl_StatusType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Auctions">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Auctions">
+              <MappingFragment StoreEntitySet="Tbl_Auctions">
+                <ScalarProperty Name="Confirm_Price" ColumnName="Confirm_Price" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ShopingCart">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_ShopingCart">
+              <MappingFragment StoreEntitySet="Tbl_ShopingCart">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CookiNo" ColumnName="CookiNo" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_TempSales">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_TempSales">
+              <MappingFragment StoreEntitySet="Tbl_TempSales">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BankGetNo" ColumnName="BankGetNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ShopingCart_ProductID" ColumnName="ShopingCart_ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ContactUs">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_ContactUs">
+              <MappingFragment StoreEntitySet="Tbl_ContactUs">
+                <ScalarProperty Name="Read" ColumnName="Read" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Users">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Users">
+              <MappingFragment StoreEntitySet="Tbl_Users">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NatCode" ColumnName="NatCode" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Shire" ColumnName="Shire" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ShabaNo" ColumnName="ShabaNo" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Access" ColumnName="Access" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Filters">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Filters">
+              <MappingFragment StoreEntitySet="Tbl_Filters">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FilterGroupID" ColumnName="FilterGroupID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Filters_Products">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Filters_Products">
+              <MappingFragment StoreEntitySet="Tbl_Filters_Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="FilterID" ColumnName="FilterID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

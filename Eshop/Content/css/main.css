@@ -1,0 +1,172 @@
+/* Farsscript.ir */
+@font-face {
+    font-family: "BKoodakBold";
+    src: url('fonts/BKoodakBold.eot?#') format('eot'),
+         url('fonts/BKoodakBold.woff') format('woff'),
+         url('fonts/BKoodakBold.ttf') format('truetype');
+}
+/* CSS3 accordion */
+.css3accordion {
+    border: 9px solid #353535; 
+    border-radius: 6px;
+    padding: 5px 5px 6px 0; 
+    background: #030303; 
+    height: 320px;
+    width: 960px;
+	font-family:BKoodakBold,Arial,sans-serif;
+
+    /* CSS3 shadows */
+    -webkit-box-shadow: 0 -1px 0 #555 inset, 0 5px 15px rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 0 -1px 0 #555 inset, 0 5px 15px rgba(0, 0, 0, 0.5); 
+    -ms-box-shadow: 0 -1px 0 #555 inset, 0 5px 15px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 0 -1px 0 #555 inset, 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 -1px 0 #555 inset, 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* hide first level spans */
+.css3accordion > span {
+    display: none
+}
+
+/* main accordion styles and slides */
+.css3accordion ol {
+    height: 100%;
+    list-style: none;
+    overflow: hidden;
+    position: relative;
+}
+.css3accordion li {
+    float: left;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 48px;
+
+    /* CSS3 transition for slides */
+    -webkit-transition: all 0.9s ease-in-out;
+    -moz-transition: all 0.9s ease-in-out;
+    -ms-transition: all 0.9s ease-in-out;
+    -o-transition: all 0.9s ease-in-out;
+    transition: all 0.9s ease-in-out;
+}
+
+.css3accordion li a {
+    display: block;
+    float: left;
+    height: 320px;
+    position: relative;
+    width: 48px;
+}
+
+/* slide headers */
+.css3accordion  h2 {
+    font-size: 16px;
+    font-weight: normal;
+    height: 48px;
+    left: 0;
+    line-height: 265%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 320px;
+    z-index: 1;
+
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateX(-100%) rotate(-90deg); 
+    -webkit-transform-origin: right top; 
+    -moz-transform: translateX(-100%) rotate(-90deg);
+    -moz-transform-origin: right top; 
+    -ms-transform: translateX(-100%) rotate(-90deg);
+    -ms-transform-origin: right top; 
+    -o-transform: translateX(-100%) rotate(-90deg); 
+    -o-transform-origin: right top; 
+    transform: translateX(-100%) rotate(-90deg); 
+    transform-origin: right top; 
+}
+.css3accordion h2 span { 
+    background-color: #353535;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    margin-top: 5px;
+    padding-right: 10%;
+    text-align: right;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none; 
+}
+.css3accordion h2 span:hover { 
+    background-color: #353535;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#353535), color-stop(100%,#555555));
+    background: -webkit-linear-gradient(left,  #353535 0%,#555555 100%);
+    background: -moz-linear-gradient(left,  #353535 0%, #555555 100%);
+    background: -ms-linear-gradient(left,  #353535 0%,#555555 100%);
+    background: -o-linear-gradient(left,  #353535 0%,#555555 100%);
+    background: linear-gradient(left,  #353535 0%,#555555 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#353535', endColorstr='#555555',GradientType=1 );
+}
+
+/* 'counter' object */
+.css3accordion h2 span:after { 
+    color: #080808;
+    font-weight: bold;
+    left: 10%;
+    position: absolute;
+    text-shadow: -1px 1px 0 #555555;
+    top: 10%;
+
+    /* CSS3 rotate for 'counter' */
+    -webkit-transform: rotate(90deg); 
+    -moz-transform: rotate(90deg); 
+    -ms-transform: rotate(90deg); 
+    -o-transform: rotate(90deg); 
+    transform: rotate(90deg);
+}
+/* 'counter' values */
+li.slide1  h2 span:after {
+    content: "1";
+}
+li.slide2  h2 span:after {
+    content: "2";
+}
+li.slide3  h2 span:after {
+    content: "3";
+}
+li.slide4  h2 span:after {
+    content: "4";
+}
+li.slide5  h2 span:after {
+    content: "5";
+}
+
+/* inner slide content */
+.css3accordion li div {
+    margin-left: 5px;
+    padding-left: 48px;
+}
+
+/* onclick behavior */
+#slide1:target ~ ol li.slide1,
+#slide2:target ~ ol li.slide2,
+#slide3:target ~ ol li.slide3,
+#slide4:target ~ ol li.slide4,
+#slide5:target ~ ol li.slide5 {
+    width: 768px;
+}
+#slide1:target ~ ol li.slide1 span,
+#slide2:target ~ ol li.slide2 span,
+#slide3:target ~ ol li.slide3 span,
+#slide4:target ~ ol li.slide4 span,
+#slide5:target ~ ol li.slide5 span { 
+    background: #353535;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#353535), color-stop(100%,#555555));
+    background: -webkit-linear-gradient(left,  #353535 0%,#555555 100%);
+    background: -moz-linear-gradient(left,  #353535 0%, #555555 100%);
+    background: -ms-linear-gradient(left,  #353535 0%,#555555 100%);
+    background: -o-linear-gradient(left,  #353535 0%,#555555 100%);
+    background: linear-gradient(left,  #353535 0%,#555555 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#353535', endColorstr='#555555',GradientType=1 );
+}

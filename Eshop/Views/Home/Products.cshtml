@@ -1,0 +1,442 @@
+﻿@model Eshop.Models.Domain.Tbl_Products
+
+
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Index.cshtml";
+    UtilityFuncs u = new UtilityFuncs();
+    Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+}
+
+@if (Model == null)
+{
+    <p>موردی یافت نشد</p>
+}
+else
+{
+
+
+    <div id="content">
+        <div id="postcontainer">
+            <div class="post-7 post type-post status-publish format-standard hentry category-1 tag-salam tag-17 tag-19" id="post-7">
+                <h1 class="title">
+                    <span>@Model.Title</span><br /><span class="date">@u.ToShamsi(Model.Date).ToShortDateString()</span>
+                </h1>
+                <p>@Html.Raw(Model.Text)</p>
+            </div>
+            <hr>
+
+            <div class="" style="">
+                <div id="ProductSlideShow" class="number_slideshow" style="display: block; width: 554px; height: 336px;">
+                    <!-- شروع اسلايدر -->
+                    <style type="text/css">
+                        #fadein {
+                            margin: 10px;
+                            float: left;
+                            position: relative;
+                            width: 550px;
+                            height: 332px;
+                            overflow: hidden;
+                        }
+
+                            #fadein img {
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                            }
+                    </style>
+                    <script language="JavaScript" type="text/javascript">
+                        /*<![CDATA[*/
+                        $(function () {
+                            $('#fadein img:gt(0)').hide();
+                            setInterval(function () {
+                                $('#fadein :first-child').fadeOut(1000)
+                                    .next('img').fadeIn(1000)
+                                    .end().appendTo('#fadein');
+                            },
+                                3000);
+                        });
+                        /*]]>*/
+                    </script>
+                    <div id="fadein">
+                        @foreach (var item in Model.Tbl_ProductPics)
+                        {
+                            <img src="~/Content/Pics/ProductsPic/@item.PicName" style="width: 550px; height: 332px;">
+                        }
+
+                    </div>
+                    <div style="display: none"><a href="http://1code.ir/">اسلايدر تصاوير</a></div>
+                    <!-- پايان اسلايدر -->
+
+
+                    <div style="clear: both"></div>
+
+                </div>
+            </div>
+
+
+            <hr>
+            <div class="block share">
+                <h2>اشتراک گذاري</h2>
+
+                <div class="tl">
+                    <div class="tr">
+                        <div class="bl">
+                            <div class="br">
+                                <div class="c">
+                                    <ul>
+                                        <li><a href="" rel="external" class="digg">digg</a> </li>
+                                        <li><a href="" rel="external" class="facebook">facebook</a> </li>
+                                        <li><a href="" rel="external" class="twitter">twitter</a> </li>
+                                        <li><a href="" rel="external" class="technorati">technorati</a> </li>
+                                        <li><a href="" rel="external" class="delicious">delicious</a> </li>
+                                        <li><a href="" class="stumbleupon">stumbleupon</a> </li>
+                                        <li><a href="" rel="external" class="reddit">reddit</a> </li>
+                                        <li><a href="" rel="external" class="myspace">myspace</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>                <div class="block">
+                <p>
+                    شما در این قسمت می توانید سوالات خود را از فروشنده بپرسید
+                </p>
+            </div>
+            <div id="comments">
+                <h2><span></span> ديدگاه ها براي اين نوشته</h2>
+
+                <div id="comments_list">
+                    @foreach (var item in Model.Tbl_Comment.Where(a => a.ID == a.ParentID))
+                    {
+                        <div id="comment-4" class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 item">
+                            <div class="avatar_container">
+                                <img alt="" src="" class="avatar avatar-65 photo" height="65" width="65">            <div class="border"></div>
+                            </div>
+                            <div class="info">
+                                <strong>@item.Name</strong> <em>@u.ToShamsi(Model.Date).ToShortDateString()</em>
+
+
+                                @if (Session["UserName"] != null)
+                                {
+                                    if (Session["UserName"].ToString() == Model.Tbl_Users.UserName)
+                                    {
+                                        <a onclick="document.getElementById('comment_parent').value=@item.ID" class="comment-reply" id="monkreply-4">پاسخ</a>
+
+                                    }
+                                }
+                            </div>
+                            <div class="text">
+                                <div class="r">
+                                    <div class="tl">
+                                        <div class="tr">
+                                            <div class="bl">
+                                                <div class="br">
+                                                    <p>@item.Text</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @foreach (var item2 in Model.Tbl_Comment.Where(a => a.ParentID.Equals(item.ID) && a.ID != a.ParentID))
+                                {
+                                    <div class="r">
+                                        <div class="tl">
+                                            <div class="tr">
+                                                <div class="bl">
+                                                    <div class="br">
+                                                        <p>@item2.Text</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            </div>
+
+                        </div><!-- #comment-## -->
+
+                    }
+
+
+
+
+
+                </div>
+            </div>
+            @if (Session["UserName"] != null)
+            {
+
+
+                <div id="respond">
+                    <div class="holder">
+                        <h2>فرستادن ديدگاه</h2>
+                    </div>
+
+                    <form class="comment-form" method="post" action="~/Home/InsertComment">
+                        <fieldset>
+                            <legend class="hidden">فرم ديدگاه</legend>
+                            <div class="form-inner">
+                                <div class="col-left">
+                                    <div class="row">
+                                        <label for="author" class="required">نام</label>
+
+                                        <div class="input-holder">
+                                            <input name="Name" id="author" type="text" class="text" tabindex="1" value="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="email" class="required">ايميل</label>
+
+                                        <div class="input-holder">
+                                            <input name="Email" id="email" type="text" class="text" tabindex="2" value="" placeholder="your_email@example.com" ="=" ">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="url">وبسايت</label>
+
+                                        <div class="input-holder">
+                                            <input name="WebSite" id="url" type="text" class="text" tabindex="3" value="" placeholder="http://www.example.com">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-right">
+                                    <label for="textfield">پيام</label>
+
+                                    <div class="area-holder">
+                                        <textarea name="Text" id="textfield" tabindex="4" rows="10" cols="30"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notify">
+                                <button type="submit" class="btn" tabindex="5"><span>پرسیدن سوال</span></button>
+                                <input type="hidden" name="ProductID" value="5" id="comment_post_ID">
+                                <input type="hidden" name="ParentID" id="comment_parent" value="0">
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div id="comment-popup">
+                        <div id="comment-popup_bottom">
+                            <div id="comment-popup_bg">
+                                <div class="title">
+                                    <a id="cancel-comment-reply-link"></a>
+                                    <h2>ارسال سوال</h2>
+                                </div>
+                                <form method="post" action="#" class="comment-form">
+                                    <fieldset>
+                                        <legend class="hidden">فرم ديدگاه</legend>
+                                        <div class="form-inner">
+                                            <div class="col-left">
+                                                <div class="row">
+                                                    <label for="author2" class="required">نام</label>
+
+                                                    <div class="input-holder">
+                                                        <input name="author" id="author2" type="text" class="text" tabindex="6" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label for="email2" class="required">ايميل</label>
+
+                                                    <div class="input-holder">
+                                                        <input name="email" id="email2" type="text" class="text" tabindex="7" value="" placeholder="your_email@example.com">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label for="url2">وبسايت</label>
+
+                                                    <div class="input-holder">
+                                                        <input name="url" id="url2" type="text" class="text" tabindex="8" value="" placeholder="http://www.example.com">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-right">
+                                                <label for="textfield2">سوال</label>
+
+                                                <div class="area-holder">
+                                                    <textarea name="comment" id="textfield2" tabindex="9" rows="10" cols="30"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="notify">
+                                            <button name="submit" id="submit" type="submit" class="btn" tabindex="10"><span>ارسال سوال</span></button>
+                                            <input type="hidden" name="comment_post_ID" value="@Model.ID" id="comment_post_ID">
+                                            <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p>برای ثبت دیدگاه باید وارد سایت شوید</p>
+            }
+        </div>
+    </div>
+
+
+    @section BlockDetailsProducts
+{
+        <div class="widget">
+            <div class="widget_btm">
+                <div class="widget_cont">
+                    <h2 class="widgettitle cufon">درباره ی فروشنده</h2>
+                    <ul class="UlAbout">
+                        <li>نام: <span>@Model.Tbl_Users.Name</span></li>
+                        <li>تعداد محصولات: <span>@db.Tbl_Products.Where(a => a.UserId.Equals(Model.UserId)).Count()</span></li>
+                        <li>تاریخ عضویت : <span>@u.ToShamsi(Model.Tbl_Users.Date).Date</span></li>
+                        <li>شهرستان:<span>@Model.Tbl_Users.City</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        @if (Session["UserName"] != null)
+        {
+            if (Model.DateEnd != null)
+            {
+
+
+
+
+                <div class="widget">
+                    <div class="widget_btm">
+                        <div class="widget_cont">
+                            <h2 class="widgettitle cufon"> جدول پیشنهادات</h2>			<div class="textwidget">
+                                <ul id="OfferList" class="UlAbout">
+                                    @foreach (var item in Model.Tbl_Auctions.OrderByDescending(a => a.ID))
+                                    {
+                                        <li>@item.Price</li>
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget">
+                    <div class="widget_btm">
+                        <div class="widget_cont">
+                            <h2 class="widgettitle cufon"> شرکت در مزایده</h2>			<div class="textwidget">
+                                <ul class="UlAbout">
+                                    <li>زمان باقی مانده : @u.TimeMozayedeh(Model.DateEnd.ToString(), DateTime.Now)</li>
+                                    <li> تعداد پیشنهادات: @Model.Tbl_Auctions.Count</li>
+                                    <li>
+                                        <div style="margin:5px; border:1px solid #d5ff00;border-radius:5px;padding:10px;">
+                                            @{
+                                                string UserName = Session["UserName"].ToString();
+                                                var TopOffer = (from a in db.Tbl_Auctions
+                                                                where a.ProductID.Equals(Model.ID) && a.Tbl_Users.UserName.Equals(UserName)
+                                                                select a).SingleOrDefault();
+                                            }
+
+
+
+
+                                            <p>بالاترین پیشنهاد شما:<span>@(TopOffer != null ? TopOffer.Price : 0)</span></p>
+                                            @using (Ajax.BeginForm("Offer", "Home", new AjaxOptions() { Confirm = "آیا مطمئن به ثبت هستید؟", LoadingElementId = "Loading", UpdateTargetId = "OfferList", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }))
+                                            {
+                                                <input style="border:1px solid black; border-radius:3px;height:15px;width:100px;padding:3px;" type="text" name="Price">
+                                                <input type="hidden" name="ProductID" value="@Model.ID" />
+                                                <input type="submit" style="height:25px;border:1px solid black;border-radius:2px;font-family:Tahoma;" value="ثبت پیشنهاد">
+                                                <div id="Loading" style="display:none;color:red;">در حال ارسال داده ها</div>
+                                            }
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="widget">
+                    <div class="widget_btm">
+                        <div class="widget_cont">
+                            <h2 class="widgettitle cufon">خرید محصول</h2><div class="textwidget">
+                                <div style="margin:10px;padding:3px;direction:rtl;">
+                                    <span>تعداد موجودی: @Model.ExistCount</span><br />
+                                    <span>تعداد انتخاب شما: <input type="number" max="@Model.ExistCount" min="1" name="Count" id="CountProduct" style="width:30px; padding:2px;" /> </span>
+                                    <br />
+                                    <span style="margin-top:10px;">
+                                        <button onclick="InstertToShopingCart()" type="button" id="BtnInsertToCart" style="width:100px; height:30px;text-align:center;padding:5px;margin:5px;font-weight:700;background-color:#e04e4e;">افزودن به سبد خرید</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                @*<script src="~/Scripts/jquery-2.1.4.min.js"></script>*@
+<script>
+    function InstertToShopingCart() {
+        if(document.getElementById('CountProduct').value > @Model.ExistCount)
+        {
+            alert("تعداد انتخابی شما بیشتر از تعداد موجودی است");
+        return;
+        }
+        if(document.getElementById('CountProduct').value <1)
+        {
+            alert("تعداد انتخابی شما باید بیشتر از صفر باشد");
+            return;
+        }
+
+       
+
+        var ProductID = @Model.ID;
+
+         //loading start
+        $.ajax({
+
+            url: '/Home/AddToCart',
+            type: 'POST',
+            dataType: 'json',
+            data: { ProductID: ProductID, count: document.getElementById('CountProduct').value },
+            error: function (err) {
+                alert(err.status);
+            }
+
+
+        }).done(function (data) {
+
+            $('#GheymatKol').text(data.GheymatKol);
+            $('#Count').text(data.Count);
+
+            var Text = "";
+            $.each(data.LstCart, function (index, val) {
+
+                Text += "<tr>< td class='ProductName' >" + val.ProductName + "</td > <td class='Count'>" + val.Count + "</td><td class='Price'>" + val.Price + "</td><td><a onclick='RemoveCart'(" + val.id + ") style='cursor:pointer; color:red;'>X</a></td></tr >";
+
+
+
+            })
+
+            $('#TableProduct').html(Text);
+
+        });
+
+        //loading end
+    }
+
+    
+
+</script>
+
+            }
+
+
+        }
+    }
+}
+

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_Products>
+
+@{
+    ViewBag.Title = "ManageProducts";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+@if (Model != null)
+
+{
+    <div id="content">
+        <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+            <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+                <p>
+                    @Html.ActionLink("محصول جدید", "InsertProduct")
+                </p>
+
+                <style>
+                    .table tr th {
+                        width: 120px;
+                    }
+
+                    .table tr td {
+                        text-align: center;
+                    }
+                </style>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExistCount)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Visit)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        string Style = "";
+                        if (item.ExistCount <= 0)
+                        { Style = "background-color:red;"; }
+                        <tr style="@Style">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExistCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Visit)
+                            </td>
+                            <td>
+                                @Html.ActionLink("ویرایش", "EditProducts", new { id = item.ID }) |
+                                @Html.ActionLink("نمایش", "Products", "Home", new { id = item.ID }, new { Style = "" }) |
+                                @Html.ActionLink("حذف", "DelProducts", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <script>
+                    function Paging(PageNo) {
+
+                        document.getElementById("PageId").value = PageNo;
+                        SubmitForm();
+                    }
+
+                </script>
+                <div id="Paging">
+                    <center>
+                        <ul>
+                            @{
+                                decimal AllProduct = ViewBag.CountPoduct;
+                                decimal Take = ViewBag.Take;
+                                for (int i = 1; i <= Math.Ceiling((decimal)(AllProduct / Take)); i++)
+                                {
+                                    <li><a href="~/User/ManageProducts/?Page=@i.ToString()">@i.ToString()</a></li>
+                                }
+                            }
+
+                        </ul>
+                    </center>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}
+else
+{
+    <p>موردی وجود ندارد</p>
+}
+
+

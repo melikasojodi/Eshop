@@ -1,0 +1,157 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_Products>
+
+@{
+    ViewBag.Title = "جستجو";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+<script>
+
+    function SubmitForm() {
+        document.getElementById("Btn_Submit").click();
+    }
+    function Paging(PageNo) {
+
+        document.getElementById("PageId").value = PageNo;
+        SubmitForm();
+    }
+
+
+</script>
+
+
+
+
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+        @{
+
+            if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="post-7 post type-post status-publish format-standard hentry category-1 tag-salam tag-17 tag-19 masonry-brick" id="post-7" style="position: absolute; top: 0px; left: 0px;">
+                        <div class="categories">
+                            <h3>@item.Tbl_Categoris.Title (@(item.DateEnd==null ? "فروش عادی" : "مزایده"))</h3>
+                            <div class="icons">
+                                <a class="hide">مخفی</a>
+                            </div>
+                        </div>
+                        <div class="min" style="height: auto;">
+                            <img style="width:250px;height:150px;margin-bottom:10px;" src="~/Content/Pics/ProductsPic/@item.Image" />
+                            <h2>
+                                <a href="#" title="@item.Title">@item.Title</a>
+                            </h2>
+
+                            <p>@item.Description</p>
+                            <span class="Price">قیمت: <strong>@item.Price</strong>تومان</span>
+                        </div>
+                        <a class="more" href="~/Home/Products/@item.ID">نمایش جزئیات</a>
+                    </div>
+                }
+            }
+
+            else
+            {
+                <script>
+                    alert("موردی یافت نشد");
+                    location.href = "https://localhost:44355/Home/Index"
+                </script>
+            }
+        }
+    </div>
+
+    <div id="Paging">
+        <center>
+            <ul>
+                @{
+                    int Allproduct = ViewBag.CountProduct;
+                    int Take = ViewBag.Take;
+
+                    for (int i = 1; i <= Math.Ceiling((decimal)Allproduct / Take); i++)
+                    {
+                        <li><a onclick="Paging(@i.ToString())">@i.ToString()</a></li>
+                    }
+
+
+
+                }
+
+            </ul>
+        </center>
+    </div>
+
+</div>
+
+
+@section FilterBlock
+{
+    @{Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+        int TopicID = ViewBag.TopicID;
+        var q = from a in db.Tbl_GroupFilters_Categories
+                join b in db.Tbl_GroupFilters on a.FilterID equals b.ParentID
+                where a.TopicID == TopicID && b.ParentID != b.ID
+                select b;
+
+    }
+
+
+
+
+
+
+    <div class="widget">
+        <div class="widget_btm">
+            <div style="display:block;" class="widget_cont" id="BlockLogin">
+                <h2 class="widgettitle cufon">گروه ها</h2>
+                <div class="FilterBlock">
+                    @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { id = "FrmFilter" }))
+                    {
+                        List<int> FilterItem = ViewBag.FilterItem;
+
+
+                        <input type="hidden" name="TopicID" value="@ViewBag.TopicID" />
+                        <input id="PageId" type="hidden" name="page" value="1" />
+
+                        <table class="TablePriceFilter">
+                            <tr>
+                                <td> از:<input type="text" name="MinPrice" value="@ViewBag.MinPrice" /></td>
+                                <td>تا :<input type="text" name="MaxPrice" value="@ViewBag.MaxPrice" /> </td>
+
+                            </tr>
+                        </table>
+                        foreach (var item in q)
+                        {
+                            <span style="direction:rtl;color:blue;font-size:12px;margin:5px;">@item.Title</span>
+                            <ul>
+                                @{
+                                    var q2 = from a in db.Tbl_Filters
+                                             where a.FilterGroupID == item.ID
+                                             select a;
+                                    List<int> LstFilterItem = new List<int>();
+                                    LstFilterItem.AddRange(ViewBag.FilterItem);
+
+                                    foreach (var item2 in q2)
+                                    {
+                                        string Ch = "";
+                                        if (LstFilterItem.Contains(item2.ID))
+                                        { Ch = "Checked"; }
+                                        <li><input onclick="SubmitForm()" type="checkbox" name="FilterItem" value="@item2.ID" @Ch.ToString() />@item2.Title</li>
+                                    }
+
+
+                                }
+
+
+                            </ul>
+                        }
+                        <div style="direction:ltr"><input id="Btn_Submit" style="font-family:Tahoma; width:50px; height:30px;" type="submit" value="فیلتر" /></div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

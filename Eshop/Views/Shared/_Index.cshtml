@@ -1,0 +1,362 @@
+﻿@{
+
+    Eshop.Models.Repository.RepositorySetting Rep_Setting = new Eshop.Models.Repository.RepositorySetting();
+    Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="rtl" lang="fa-IR" class="js-enabled">
+
+<head profile="http://gmpg.org/xfn/11">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <title>@Rep_Setting.GetSiteTitle() - @ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/Content/Image/favicon.ico" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="~/Content/Css/number_slideshow.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/Scripts/number_slideshow.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Css/style.css" type="text/css" media="screen" />
+    @RenderSection("Js", required: false)
+
+
+    <style type="text/css">
+        a {
+            color: #3CA097;
+        }
+
+            a:hover {
+                color: #23665f;
+            }
+
+        body {
+            background-color: #EBEADB;
+        }
+
+        #footer_bg {
+            background-color: #CFCFBD;
+        }
+    </style>
+    <link rel="alternate" type="application/rss+xml" title="آزمایش » خوراک" href="http://localhost:8080/wordpress/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="آزمایش » خوراک دیدگاه‌ها" href="/rrs" />
+    <script type="text/javascript">
+        window._wpemojiSettings = { "baseUrl": "http:\/\/s.w.org\/images\/core\/emoji\/72x72\/", "ext": ".png", "source": { "concatemoji": "http:\/\/localhost:8080\/wordpress\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.3" } };
+        !function (a, b, c) { function d(a) { var c = b.createElement("canvas"), d = c.getContext && c.getContext("2d"); return d && d.fillText ? (d.textBaseline = "top", d.font = "600 32px Arial", "flag" === a ? (d.fillText(String.fromCharCode(55356, 56812, 55356, 56807), 0, 0), c.toDataURL().length > 3e3) : (d.fillText(String.fromCharCode(55357, 56835), 0, 0), 0 !== d.getImageData(16, 16, 1, 1).data[0])) : !1 } function e(a) { var c = b.createElement("script"); c.src = a, c.type = "text/javascript", b.getElementsByTagName("head")[0].appendChild(c) } var f, g; c.supports = { simple: d("simple"), flag: d("flag") }, c.DOMReady = !1, c.readyCallback = function () { c.DOMReady = !0 }, c.supports.simple && c.supports.flag || (g = function () { c.readyCallback() }, b.addEventListener ? (b.addEventListener("DOMContentLoaded", g, !1), a.addEventListener("load", g, !1)) : (a.attachEvent("onload", g), b.attachEvent("onreadystatechange", function () { "complete" === b.readyState && c.readyCallback() })), f = c.source || {}, f.concatemoji ? e(f.concatemoji) : f.wpemoji && f.twemoji && (e(f.twemoji), e(f.wpemoji))) }(window, document, window._wpemojiSettings);
+    </script>
+    <script src="~/Scripts/wp-emoji-release.min.js" type="text/javascript"></script>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/custom.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/cufon-yui.js"></script>
+    <style type="text/css">
+    </style>
+    <script type="text/javascript" src="~/Scripts/main.js"></script>
+    <script type="text/javascript" src="~/Scripts/paginator3000.js"></script>
+    <meta name="generator" content="MohammadReza Ahmadi" />
+    <!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="~/Scripts/selectivizr-min.js"></script>
+    <![endif]-->
+</head>
+<body class="rtl home blog">
+    <script>
+        $(function () {
+            $("#number_slideshow").number_slideshow({
+                slideshow_autoplay: 'enable',//enable disable
+                slideshow_time_interval: 3000,
+                slideshow_window_background_color: "#fff",
+                slideshow_window_padding: '1',
+                slideshow_window_width: '550',
+                slideshow_window_height: '332',
+                slideshow_border_size: '1',
+                slideshow_transition_speed: 500, //'normal','slow','fast' or numeral
+                slideshow_border_color: 'black',
+                slideshow_show_button: 'enable',//enable disable
+                slideshow_show_title: 'disable',//enable disable
+                slideshow_button_text_color: '#CCC',
+                slideshow_button_current_text_color: '#000',
+                slideshow_button_background_color: '#333',
+                slideshow_button_current_background_color: '#666',
+                slideshow_button_border_color: '#000',
+                slideshow_loading_gif: 'loading.gif',//loading pic, you can replace it.
+                slideshow_button_border_size: '1'
+            });
+        });
+    </script>
+    <div id="fh_container" class="container">
+        <div id="header" class="clearfix ">
+            <div id="heading">
+                <div id="heading_right">
+                    <div id="heading_bg">
+                        <h1>@*<a href="http://localhost:8080/wordpress"><img src="~/Content/Image/logo.png" alt="آزمایش - خانه" /></a>*@</h1>
+
+                        <h2>@Rep_Setting.GetSiteDescription()</h2>
+                        <div class="share">
+                            <ul>
+                                <li>
+                                    <a href="http://www.stumbleupon.com/submit?url=MyURLSite" rel="external" class="stumbleupon" target="blank">stumbleupon</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.technorati.com/faves?add=MyURLSite" rel="external" class="technorati" target="blank">technorati</a>
+                                </li>
+
+                                <li>
+                                    <a href="http://del.icio.us/post?url=MyURLSite" rel="external" class="delicious" target="blank">delicious</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.facebook.com/share.php?u=MyURLSite" rel="external" class="facebook" target="blank">facebook</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="navigation" class="teal">
+                <div id="nav">
+                    @{
+                        var q = from a in db.Tbl_Menu
+                                orderby a.Sort
+                                select a;
+                        foreach (var item in q)
+                        {
+
+                            <a class="home" href="@item.Link">@item.Title</a>
+                        }
+                    }
+
+                </div>
+            </div>
+
+            <script>
+
+                function GetCart() {
+                    //loading start
+                    $.ajax({
+
+                        url: '/Home/GetCart',
+                        type: 'POST',
+                        dataType: 'json',
+
+                        error: function (err) {
+                            alert(err.status);
+                        }
+
+
+                    }).done(function (data) {
+
+                        $('#GheymatKol').text(data.GheymatKol);
+                        $('#Count').text(data.Count);
+
+                        var Text = "";
+                        $.each(data.LstCart, function (index, val) {
+
+                            Text += "<tr><td class='ProductName'>" + val.ProductName + "</td><td class='Count'>" + val.Count + "</td><td class='Price'>" + val.Price + "</td><td><a onclick='RemoveCart(" + val.id + ")' style='cursor:pointer;color:red;'> X </a></td></tr>";
+
+
+                        })
+
+                        $('#TableProduct').html(Text);
+
+                    });
+                    //loading end
+                }
+                function RemoveCart(id) {
+
+                    $.ajax({
+
+                        url: '/Home/DeleteCart',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: { id: id },
+                        error: function (err) {
+                            alert(err.status);
+                        }
+
+
+                    }).done(function (data) {
+
+                        $('#GheymatKol').text(data.GheymatKol);
+                        $('#Count').text(data.Count);
+
+                        var Text = "";
+                        $.each(data.LstCart, function (index, val) {
+
+                            Text += "<tr><td class='ProductName'>" + val.ProductName + "</td><td class='Count'>" + val.Count + "</td><td class='Price'>" + val.Price + "</td><td><a onclick='RemoveCart(" + val.id + ")' style='cursor:pointer;color:red;'> X </a></td></tr>";
+
+
+                        })
+
+                        $('#TableProduct').html(Text);
+
+                    });
+
+
+                }
+
+
+            </script>
+            <div id="rss" class="red">
+                <a onclick="$('.ShopingCart').css('display', 'block'); GetCart();"> <span></span></a>
+            </div><div id="search" class="red">
+                <div id="search_right">
+                    <div id="search_bg">
+                        <form class="searchform" method="get" action="/Home/SearchByTitle">
+                            <fieldset>
+                                <legend class="hidden">فرم جستجو</legend>
+                                <div class="input-holder">
+                                    <input class="search" name="Title" type="text" placeholder="جستجو" />
+                                </div>
+                                <a id="cat-button" href="#" class="ui-selectmenu-dropdown"><span class="ui-selectmenu-status">همه نوشته ها</span></a>
+                                <button value="submit" class="search_btn">جستجو</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><div id="content_container">
+            <div id="content_container_bg" class="clearfix">
+                <div class="Slider" style="">
+                    <div id="number_slideshow" class="number_slideshow">
+                        <ul>
+                            @{
+                                var qSlide = from a in db.Tbl_Slides
+                                             orderby a.Sort
+                                             where a.Enable == true
+                                             select a;
+
+                                foreach (var item in qSlide)
+                                {
+                                    <li><a href="@item.Link"><img src="/Content/Pics/Slider/@item.Image" alt="@item.Title" /></a></li>
+
+                                }
+                            }
+
+                        </ul>
+
+                        <div style="clear: both"></div>
+
+                    </div>
+                </div>
+
+                @RenderBody()
+
+                <div id="sidebar">
+                    <div class="widget">
+                        <div class="widget_btm">
+
+                            @if (Session["UserName"] == null)
+                            {
+
+
+                                <div style="display:block;" class="widget_cont" id="BlockLogin">
+                                    <h2 class="widgettitle cufon">ورود به سایت</h2>
+                                    <form method="post" action="~/Home/Login">
+
+                                        <span style="margin:5px;direction:rtl;">
+
+                                            <span style="@ViewBag.LoginStyle">@ViewBag.LoginMessage</span>
+
+                                        </span>
+
+                                        <table class="TableLogin">
+                                            <tr>
+                                                <td>نام کاربری: </td>
+                                                <td><input type="text" name="UserName" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>کلمه ی عبور: </td>
+                                                <td><input type="text" name="Password" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td><input type="submit" value="ورود" /><input type="reset" value="از نو" /></td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                            }
+                            else
+                            {
+
+
+                                <div style="display:block;" class="widget_cont" id="BlockAccount">
+                                    <h2 class="widgettitle cufon">پنل کاربری شما</h2>
+                                    <div style="text-align:center">
+                                        @{
+                                            string UserName = Session["UserName"].ToString();
+                                            var Image = db.Tbl_Users.Where(a => a.UserName.Equals(UserName)).SingleOrDefault().Image;
+                                        }
+                                        <img src="~/Content/Pics/Users/@Image" style="border:1px solid black;width:150px;height:150px;" />
+                                    </div>
+                                    <hr style="color:#ADADAD;margin-top:20px;width:200px;" />
+                                    <ul style="margin-right:50px;">
+                                        <li><a href="~/User/ManageProducts">مدیریت محصولات</a></li>
+                                        <li><a href="~/User/InsertProduct">افزودن محصول</a></li>
+                                        <li><a href="~/User/EditProfile">ویرایش پروفایل</a></li>
+                                        <li><a href="~/User/Logout">خروج از سایت</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @RenderSection("BlockDetailsProducts", required: false)
+                    @RenderSection("FilterBlock", required: false)
+
+                    @Html.Partial("P_Catgory")
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer_bg">
+        <div class="container">
+            <div id="love">
+                <p>Powered by <a href="http://wordpress.org/" rel="external" target="blank">WordPress</a>. Icons by <a href="http://www.komodomedia.com/" rel="external" target="blank">Komodo Media</a>.</p>
+                <p class="credits">فارسی شده توسط <a rel="external" href="http://temphaa.com/" target="blank">تمپــــ ها</a></p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">Cufon.now();</script>
+
+    <div id="box-outer" aria-activedescendant="ui-selectmenu-item-915" style="left: 309px; top: 199px;"><ul class="ui-selectmenu-menu ui-widget ui-widget-content" id="cat-menu" style="top: -78px;"><li class="ui-selectmenu-item-selected"><a href="http://localhost:8080/wordpress/#" tabindex="-1" aria-selected="true" id="ui-selectmenu-item-915">همه نوشته ها</a></li><li class="ui-corner-bottom"><a href="http://localhost:8080/wordpress/#" tabindex="-1">دسته‌بندی نشده</a></li></ul></div>
+
+
+
+
+</body>
+</html>
+
+
+<div class="ShopingCart">
+    <div onclick="$('.ShopingCart').css('display','none')" id="Close" style="cursor: pointer; color: red; padding: 3px; border: 1px solid red; border-radius: 2px; float: right; margin: 3px;">X</div>
+    <div style="text-align:right;direction:rtl;margin-bottom:10px;width:180px;float:right;">قیمت کل: <span id="GheymatKol">0</span> تومان</div><div style="text-align: right; direction: rtl; margin-bottom: 10px; width: 170px; float: left;">تعداد موجودی:<span id="Count">0</span> عدد</div>
+    <table id="TableProduct">
+        <tr>
+            <td class="ProductName"></td>
+            <td class="Count"></td>
+            <td class="Price"></td>
+            <td><a onclick="" style="cursor:pointer; color:red;">X</a></td>
+
+        </tr>
+
+
+
+    </table>
+
+    <button class="PaymentButton" type="button" onclick="document.location.href='/Home/Payment'">پرداخت</button>
+</div>
+

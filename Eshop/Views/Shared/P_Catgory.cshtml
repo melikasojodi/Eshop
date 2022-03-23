@@ -1,0 +1,40 @@
+﻿<div class="widget">
+    <div class="widget_btm">
+        <div style="display:block;" class="widget_cont" id="BlockAccount">
+            <h2 class="widgettitle cufon">دسته بندی محصولات</h2>
+            <div id="Catgoris">
+
+                @Catgory()
+                
+                @*<ul>
+                    <li>
+                        <a href="#">قطعات کامپیوتری</a>
+                        <ul>
+                            <li><a href="#">مادربرد</a></li>
+                            <li><a href="#">CPU</a></li>
+                            <li><a href="#">کارت گرافیک</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">قطعات ماشین</a></li>
+                </ul>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@helper Catgory(int ParentID = 1)
+
+{
+    Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+
+    var q  = from a in db.Tbl_Categoris
+            where a.ParentID.Equals(ParentID) && a.ParentID != a.ID
+            select a;
+    <ul>
+        @foreach (var item in q)
+        {
+        <li>@Html.ActionLink(item.Title.ToString(),"Search","Home",new {TopicID=item.ID },new {style="" })   @Catgory(item.ID)</li>
+        }
+    </ul>
+}

@@ -1,0 +1,182 @@
+﻿@model Eshop.Models.Domain.Tbl_Products
+
+@{
+    ViewBag.Title = "افزودن محصول";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+@section js{
+
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+}
+
+
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+        <div style="text-align: center; padding: 5px; border: 1px solid red;@ViewBag.style">
+            @ViewBag.Message
+        </div>
+        @using (Html.BeginForm("InsertProduct", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2", id = "Text" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Text, new { @class = "ckeditor" })
+                        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ExistCount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ExistCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ExistCount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="IndexPic" value="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <span>آیا محصول مزایده ای است:</span>
+                    <div class="col-md-10">
+                        <input type="checkbox" name="Mozayedeh" value="1" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TopicID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select name="TopicID" id="TopicID">
+
+
+                            @{
+                                Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+                                var q = from a in db.Tbl_Categoris
+                                        orderby a.ID
+                                        select a;
+                                foreach (var item in q)
+                                {
+                                    <option value="@item.ID">@item.Title</option>
+                                }
+                            }
+                        </select>
+
+                        <input onclick="GetFilterForm()" type="button" id="Btn_AddFilter" value="اعمال فیلترها" />
+
+                    </div>
+                </div>
+                <div id="InsertFilters">
+
+                </div>
+
+                <div style='margin:5px;padding:5px;direction:rtl;text-align:right;border:1px solid #0bb86d; border-right:5px;'>
+                    <div id="DivUploadPic">
+                        <div style='margin:5px;padding:5px;direction:rtl;text-align:right;'>
+
+                            <input type="file" name="Image" value="" />
+
+                        </div>
+                    </div>
+                    <button type="button" style="width:100px;height:25px;border-radius:5px;font-family:Tahoma;" onclick="AddPic()">افزودن</button>
+
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="ثبت محصول" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <script>
+            function GetFilterForm() {
+
+                //loading start
+                $.ajax({
+
+                    url: '/User/AddFilterForm',
+                    type: 'POST',
+                    dataType: 'Html',
+                    data: { TopicID: $('#TopicID').val() },
+                    error: function (err) {
+                        alert(err.status);
+                    }
+
+
+                }).done(function (data) {
+
+                    $('#InsertFilters').html(data)
+
+                });
+
+
+                //loading end
+            }
+            function AddPic() {
+
+                $('#DivUploadPic').append("<div style='margin:5px;padding:5px;direction:rtl;text-align:right;'><input type='file' name='Image' value='' /></div>")
+
+            }
+        </script>
+
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    </div>
+
+</div>
+

@@ -1,0 +1,48 @@
+﻿@model  Eshop.Models.Domain.Tbl_Categoris
+
+@if (Model != null)
+{
+
+
+    <div class="form-group">
+        <span>اعمال فیلتر</span>
+        <div class="col-md-10">
+            @{
+                Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+
+                var qFilter = from a in db.Tbl_GroupFilters_Categories
+                              join b in db.Tbl_GroupFilters on a.FilterID equals b.ParentID
+                              where a.TopicID == Model.ID && b.ParentID != b.ID
+                              select b;
+
+                List<int> FilterItem = ViewBag.FilterItem;
+
+                foreach (var item in qFilter)
+                {
+                    <span style="direction:rtl;color:blue;font-size:12px;margin:5px;">@item.Title</span>
+                    <ul>
+                        @{
+                            var q2 = from a in db.Tbl_Filters
+                                     where a.FilterGroupID == item.ID
+                                     select a;
+
+
+                            foreach (var item2 in q2)
+                            {
+                                
+                                <li><input  type="checkbox" name="FilterItem" value="@item2.ID"  />@item2.Title</li>
+                            }
+
+
+                        }
+
+
+                    </ul>
+                }
+            }
+        </div>
+    </div>
+}else
+	{
+<p>دسته را انتخاب نمایید</p>
+	}

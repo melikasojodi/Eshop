@@ -1,0 +1,241 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+    <link href="Style.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 700px;
+            border-left: 1px solid #A0A0A0;
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-top: 1px solid #A0A0A0;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        
+   <div id="header"><h1>صندوق بازنشستگی</h1></div>
+<div id="header2"><img src="banner-design-03.jpg" width="1000px" height="100px" /></div>
+   <div id="menu">
+
+            <ul>
+ <li><a href="Default.aspx" title="صفحه نخست" target="_blank">صفحه نخست </a></li>
+     <li><a href="Default.aspx" title="ثبت نام" target="_blank">ثبت نام</a></li>
+          <li><a href="Default.aspx" title="پنل مدیریت" target="_blank">پنل مدیریت</a></li>
+                <li><a href="Contact.aspx" title="تماس با ما" target="_blank">تماس با ما </a></li>
+                                  
+            </ul>
+                </div>
+
+       
+        
+        <center>
+         <marquee direction="right" behavior="alternate" loop="-1" onmouseover="this.stop()" onmouseout="this.start()" width="1000" height="100" margin="0 auto" style="text-align:center; background-color:white; border-left:1px solid #d8d8d8; border-right:1px solid #d8d8d8;">
+            <asp:DataList ID="DataList4" runat="server" DataKeyField="Newsid" DataSourceID="ObjectDataSource4" RepeatDirection="Horizontal">
+                <ItemTemplate>
+                        <a  href="<%# Eval("Newsid","shownews.aspx?nid={0}") %>" title="" target="_blank"><img style="margin-left:2px; margin-right:2px;"  width="100" height="100" src="img/<%# Eval("Newsimage") %>" alt="" title="" width="100px" height="50px" /></a>
+
+                            
+                    <br />
+                <br />
+                </ItemTemplate>
+            </asp:DataList>
+            <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetDataAllNews" TypeName="NewsTableAdapters.tbl_NewsTableAdapter" UpdateMethod="Update">
+                <UpdateParameters>
+                    <asp:Parameter Name="Newstitle" Type="String" />
+                    <asp:Parameter Name="Newsdesc" Type="String" />
+                    <asp:Parameter Name="Newsdate" Type="DateTime" />
+                    <asp:Parameter Name="Newsvisited" Type="Int32" />
+                    <asp:Parameter Name="Newscat" Type="Int32" />
+                    <asp:Parameter Name="Newswriter" Type="String" />
+                    <asp:Parameter Name="Newsimage" Type="String" />
+                    <asp:Parameter Name="Original_Newsid" Type="Int32" />
+                </UpdateParameters>
+            </asp:ObjectDataSource></marquee>
+            </center>
+
+
+
+      <div id="container">
+
+            <br/>
+            <div id="right">
+            <div class="right-bala">دسته بندی</div>
+            <div class="right-vasat">
+<center>
+                <asp:DataList ID="DataList1" runat="server" DataKeyField="Catid" DataSourceID="ObjectDataSource1">
+                    <ItemTemplate>
+                      
+                       <ul><li > <a href="<%# Eval("Catid","showcats.aspx?cid={0}") %>" title="" target="_blank"><%# Eval("Catname") %></a>
+                       </li>
+                   </ul>
+                     
+</center>
+                    </ItemTemplate>
+                </asp:DataList>
+                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetDataallCategories" TypeName="CategoriesTableAdapters.tbl_categoriesTableAdapter"></asp:ObjectDataSource>
+                </div>
+            <div class="right-payin"></div>
+
+            <br/>
+
+                <div class="right-bala">پیوند ها</div>
+            <div class="right-vasat">
+                <center>
+                <asp:DataList ID="DataList2" runat="server" DataKeyField="Linkid" DataSourceID="ObjectDataSource2">
+                    <ItemTemplate>
+                        <ul>
+                     
+                        <li>  <a href="<%# Eval("Linkurl") %>" title="<%# Eval("Linkdesc") %>" target="_blank"><%# Eval("Linkname") %></a></li>
+                         </ul>
+                    </ItemTemplate>
+                </asp:DataList>
+                    </center>
+                <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetDataAllLink" TypeName="LinkTableAdapters.tbl_LinkTableAdapter"></asp:ObjectDataSource>
+                </div>
+            <div class="right-payin"></div>
+
+            <br/>
+
+                <div class="right-bala">آمار</div>
+            <div class="right-vasat">salam<br/>aaaaaaaaaaaaaaaa</div>
+            <div class="right-payin"></div></div>
+
+                <div id="left">
+                   <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+                       <table align="center" cellspacing="1" class="auto-style1" dir="rtl">
+                           <tr>
+                               <td>نام و نام خانوادگی:</td>
+                               <td>
+                                   <asp:TextBox ID="txt_name" runat="server" Width="200px"></asp:TextBox>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>پست الکترونیکی:</td>
+                               <td>
+                                   <asp:TextBox ID="txt_email" runat="server" Width="200px"></asp:TextBox>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>موضوع پیام:</td>
+                               <td>
+                                   <asp:TextBox ID="txt_title" runat="server" Width="200px"></asp:TextBox>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>پیغام شما:</td>
+                               <td>
+                                   <asp:TextBox ID="txt_desc" runat="server" Height="79px" TextMode="MultiLine" Width="200px"></asp:TextBox>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>
+                                   <asp:Button ID="btn_contact" runat="server" Text="ارسال" />
+                               </td>
+                               <td>
+                                   <asp:Label ID="lbl_contact" runat="server" ForeColor="Red"></asp:Label>
+                               </td>
+                           </tr>
+                  
+                       </table>
+        
+        </asp:ContentPlaceHolder>
+                </div>
+      
+
+
+          <div style="clear:both;"></div>
+
+            </div>
+
+             <table id="foot" style="direction:rtl;">
+                 <tr>
+                    <td width="333" height="60">
+                     <div style="width:300px; float:right; height:60px;  background-color:pink; border-bottom-left-radius:10px;border-top-right-radius:10px;margin:0 auto;"><h3>آخرین مطالب</h3></div>
+                   </td>
+
+                      <td width="333" height="60">
+                     <div style="width:300px; float:right; height:60px; background-color:pink; border-bottom-left-radius:10px;border-top-right-radius:10px;margin:0 auto;"></div>
+                   </td>
+
+                      <td width="333" heghit="60">
+                     <div style="width:300px; float:right; height:60px; background-color:pink; border-bottom-left-radius:10px;border-top-right-radius:10px;margin:0 auto;"></div>
+                   </td>
+                    
+                     
+                     
+                      </tr>
+
+                  <tr>
+                    <td width="333" height="440" >
+                    
+                         <asp:DataList ID="DataList3" runat="server" DataKeyField="Newsid" DataSourceID="ObjectDataSource3">
+                             <ItemTemplate>
+                                 <ul style="   list-style:none;
+     direction:rtl;
+     color:black;
+     list-style-position:inside;">
+                              <li> <a href="<%# Eval("Newsid","shownews.aspx?nid={0}") %>" title="<%# Eval("Newstitle") %>" target="_blank"><%# Eval("Newstitle") %></a></li>
+                                 </ul>
+                                 
+                                 <br />
+<br />
+                             </ItemTemplate>
+                         </asp:DataList>
+                         <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetDataTop10News" TypeName="NewsTableAdapters.tbl_NewsTableAdapter"></asp:ObjectDataSource>
+                       
+                   </td>
+
+                      <td width="333" height="440">
+                     <div style="width:300px; float:right; height:60px; background-color:pink; border-bottom-left-radius:10px;border-top-right-radius:10px;margin:0 auto;"></div>
+                   </td>
+
+                      <td width="333" heghit="440">
+
+
+                          <asp:DataList ID="DataListCommentTop10" runat="server" DataKeyField="Comid" DataSourceID="ObjectDataSourcetop10cm">
+                              <ItemTemplate>
+
+
+                                  <div style=" background-color:pink; width:300px;  border-top-right-radius:8px; ">
+             <div style=" height:30px; background-color:pink; border-top-right-radius:8px; text-align:right;padding-right:5px;   direction:rtl;"><h3><%# Eval("Comusername") %></h3></div>
+
+            </div>
+             <div  style="text-align:right;direction:rtl; padding:5px; background-color:antiquewhite"><%# Eval("Comtext") %></div>
+<br />
+                              </ItemTemplate>
+                          </asp:DataList>
+                          <asp:ObjectDataSource ID="ObjectDataSourcetop10cm" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetDataByTop10Comment" TypeName="CommentTableAdapters.tbl_CommentTableAdapter"></asp:ObjectDataSource>
+                   </td>
+                    
+                     
+                     
+                      </tr>
+
+                     
+             </table>
+   
+
+
+      <br /><br />
+
+        <div id="footer">
+            
+            مرتضی سجودی</div>
+
+    </div>
+    </form>
+</body>
+</html>

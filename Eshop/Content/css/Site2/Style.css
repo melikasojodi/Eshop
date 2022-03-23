@@ -1,0 +1,200 @@
+﻿body {
+
+    background-color:blanchedalmond;
+}
+
+#header {
+        margin:0 auto;
+width:1000px;
+
+text-align:right;
+
+text-shadow:4px 4px 3px white,7px 7px 3px silver;
+
+}
+#header2 {
+        margin:0 auto;
+width:1000px;
+height:100px;
+text-align:right;
+
+
+
+}
+#menu {
+       margin:0 auto;
+width:1000px;
+height:60px;
+border-style:solid;
+border-width:1px;
+background-color:#cccaca;
+text-align:right;
+line-height:30px;
+border-top-left-radius:5px;
+border-top-right-radius:5px;
+direction:rtl;
+}
+#menu ul{
+   list-style-type:none;
+}
+#menu ul li{
+    display:block;
+    float:right;
+}
+#menu ul li a{
+ padding-right:15px;
+  padding-left:15px;
+  font:12px tahoma ;
+  color:black;
+  text-decoration:none;
+}
+#menu ul li a:hover{
+ padding:15px;
+  font:12px tahoma ;
+  color:pink;
+  background-color:#aab4b9;
+  text-decoration:none;
+  border-radius:5px;
+}
+#menu ul li a:active{
+ padding:15px;
+  font:12px tahoma ;
+  color:cornflowerblue;
+  background-color:#aab4b9;
+  text-decoration:none;
+  border-radius:5px;
+}
+
+#container{
+        text-align:center;
+       margin:0 auto;
+    width:1000px;
+
+    background-color:white;
+    border-left:1px solid #d8d8d8;
+        border-right:1px solid #d8d8d8;
+
+}
+
+#right{
+    float:right;
+         margin-right:5px;
+
+}
+
+.right-bala{
+    background-color:#d8d8d8;
+    width:240px;
+    height:60px;
+    border:1px solid black;
+  
+        border-top-left-radius:6px;
+                border-top-right-radius:6px;
+           
+}
+.right-vasat{
+    width:240px;
+        border-left:1px solid black;
+            border-right:1px solid black;
+
+  
+}
+.right-vasat ul li{
+             
+   list-style:none;
+     direction:rtl;
+     color:black;
+     list-style-position:inside;
+}
+.right-vasat ul li a{
+color:black;
+text-decoration:none;
+
+
+}
+.right-payin{
+    width:240px;
+    height:20px;
+            border-left:1px solid black;
+            border-right:1px solid black;
+              border-bottom:1px solid black;
+                  border-bottom-left-radius:6px;
+     border-bottom-right-radius:6px;
+ 
+
+}
+
+#left{
+    float:left;
+       width:730px;
+
+}
+.left_bala {
+    background-color:skyblue;
+    width:730px;
+    height:60px;
+  
+      border-style:solid;
+      border-width:1px;
+      border-top-left-radius:6px;
+               border-top-right-radius:6px;
+            
+}
+
+}
+
+.left_vasat{
+    text-align:center;
+    width:730px;
+    border-right:1px solid #d8d8d8;
+    border-left:1px solid #d8d8d8;
+   
+}
+
+.left_paien{
+    width:730px;
+        height:20px;
+        border-right:1px solid #d8d8d8;
+    border-left:1px solid #d8d8d8;
+
+      border-bottom:1px solid #d8d8d8;
+    border-bottom-left-radius:6px;
+     border-bottom-right-radius:6px;
+}
+
+#footer{
+    text-align:center;
+       margin:0 auto;
+    width:1000px;
+    height:95px;
+    background-color:lightskyblue;
+            border:1px solid #d8d8d8;
+ 
+
+      border-bottom:1px solid #d8d8d8;
+    border-radius:6px;
+font:12px tahoma black;
+line-height:100px;
+}
+
+.more{
+    background-color:deepskyblue;
+    border-radius:6px;
+    width:150px;
+    height:60px;
+    border:1px solid black;
+    color:white;
+        line-height:60px;
+}
+a{text-decoration:none;}
+
+#foot{
+     text-align:center;
+       margin:0 auto;
+    width:1000px;
+
+
+    background-color:f5f6f6;
+    border-left:1px solid #d8d8d8;
+        border-right:1px solid #d8d8d8;
+}

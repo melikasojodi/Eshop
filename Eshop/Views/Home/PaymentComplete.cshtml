@@ -1,0 +1,53 @@
+﻿
+@model IEnumerable<Eshop.Models.Domain.Tbl_Sales>
+
+
+
+
+@{
+    ViewBag.Title = "PaymentComplete";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<h2>PaymentComplete</h2>
+
+
+@if (Model != null)
+{
+    <div id="content">
+        <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+            <div style="margin:10px; padding:10px; border:2px solid #ff6a00; direction:rtl; text-align:right;">
+                <span>شماره تراکنش: <span>@Model.FirstOrDefault().TransNo</span></span>
+                <span>قیمت کل: <span>@Model.Sum(a => a.Price)</span></span>
+            </div>
+            <table style="width:95%;" border="1">
+                <tr>
+                    <td>نام محصول</td>
+                    <td>تعداد</td>
+                    <td>قیمت</td>
+
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Tbl_Products.Title</td>
+                        <td>@item.Count</td>
+                        <td>@item.Price</td>
+
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+
+    </div>
+
+}
+
+
+else
+{
+    <p>موردی یافت نشد</p>
+}
