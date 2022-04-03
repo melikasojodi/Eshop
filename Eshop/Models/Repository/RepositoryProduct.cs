@@ -15,7 +15,9 @@ namespace Eshop.Models.Repository
 
         { 
             var q = from a in db.Tbl_Products
-                  select a;
+                    where (a.DateEnd != null?a.DateEnd>DateTime.Now :1 == 1)&&
+                    (a.DateEnd != null ? a.ExistCount>0 : 1 == 1)
+                    select a;
             return q.AsEnumerable(); 
         }
     }

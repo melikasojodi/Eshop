@@ -23,6 +23,8 @@ namespace Eshop.Models.Domain
             this.Tbl_Products = new HashSet<Tbl_Products>();
             this.Tbl_Sales = new HashSet<Tbl_Sales>();
             this.Tbl_ShopingCart = new HashSet<Tbl_ShopingCart>();
+            this.Tbl_Messages = new HashSet<Tbl_Messages>();
+            this.Tbl_Messages1 = new HashSet<Tbl_Messages>();
         }
     
         public int ID { get; set; }
@@ -56,5 +58,9 @@ namespace Eshop.Models.Domain
         public virtual ICollection<Tbl_Sales> Tbl_Sales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ShopingCart> Tbl_ShopingCart { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Messages> Tbl_Messages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Messages> Tbl_Messages1 { get; set; }
     }
 }

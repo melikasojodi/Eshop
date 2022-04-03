@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_Messages>
+
+@{
+    ViewBag.Title = "مدیریت پیام ها";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+
+
+
+    <div id="content">
+        <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+            <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+                <p>
+                    @Html.ActionLink("ارسال پیام جدید", "SendMessage", "User")
+                </p>
+
+                @if (Model != null)
+
+                {
+                    <table class="table">
+                        <tr>
+
+                            <th style="width:100px;">
+                                @Html.DisplayNameFor(model => model.UserSend)
+                            </th>
+                            <th style="width:170px;">
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+
+                            <th style="width:150px;">
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+
+                            string Style = "";
+                            if (item.Read == false)
+                            { Style = "font-weight:700;"; }
+
+                            <tr style="@Style">
+
+                                <td>
+                                    @if (item.UserSend == null)
+                                    {<span>System</span>}
+
+
+                                    else
+                                    {
+
+                                    <span>@item.Tbl_Users1.UserName</span>}
+
+
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+
+                                <td>
+                                    @{UtilityFuncs u = new UtilityFuncs(); }
+                                    @u.ToShamsi(item.Date).ToShortTimeString()
+                                </td>
+                                <td>
+
+                                    @Html.ActionLink("جزییات", "DetailsMessage", new { id = item.ID }) |
+                                    @Html.ActionLink("حذف", "DeleteMessage", new { id = item.ID })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                    <script>
+                        function Paging(PageNo) {
+
+                            document.getElementById("PageId").value = PageNo;
+                            SubmitForm();
+                        }
+
+                    </script>
+                    <div id="Paging">
+                        <center>
+                            <ul>
+                                @{
+                                    decimal AllProduct = ViewBag.CountPoduct;
+                                    decimal Take = ViewBag.Take;
+                                    for (int i = 1; i <= Math.Ceiling((decimal)(AllProduct / Take)); i++)
+                                    {
+                                        <li><a href="~/User/ManagemMessage/?Page=@i.ToString()">@i.ToString()</a></li>
+                                    }
+                                }
+
+                            </ul>
+                        </center>
+                    </div>
+                }
+                else
+                {
+                    <p>موردی وجود ندارد</p>
+                }
+            </div>
+
+        </div>
+
+    </div>

@@ -6,48 +6,51 @@
     <edmx:Diagrams>
       <Diagram DiagramId="14303cf309664098a819fc34a00be412" Name="Diagram1">
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Categoris" Width="1.5" PointX="1.375" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Comment" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Comment" Width="1.5" PointX="2.5" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_ConfEmail" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_ConfMobile" Width="1.5" PointX="6" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_GroupFilters" Width="1.5" PointX="8.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_GroupFilters_Categories" Width="1.5" PointX="13.25" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Menu" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Payments" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EsamShopDBModel.Tbl_ProductPics" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Products" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Sales" Width="1.5" PointX="6" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Setting" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Slides" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_StatusType" Width="1.5" PointX="3.75" PointY="16.5" IsExpanded="true" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Categoris_Tbl_Categoris" ManuallyRouted="false" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_GroupFilters_Categories_Tbl_Categoris" ManuallyRouted="false" />
-        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Products_Tbl_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Comment_Tbl_Products" ManuallyRouted="false" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_GroupFilters_Tbl_GroupFilters" ManuallyRouted="false" />
-        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_ProductPics_Tbl_Products" ManuallyRouted="false" />
-        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Sales_Tbl_Products" ManuallyRouted="false" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Sales_Tbl_Sales" ManuallyRouted="false" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Auctions" Width="1.5" PointX="6.875" PointY="0.5" />
-        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Auctions_Tbl_Products" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_ShopingCart" Width="1.5" PointX="6.25" PointY="5.75" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_TempSales" Width="1.5" PointX="8.5" PointY="6.25" />
-        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Products" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_TempSales_Tbl_ShopingCart" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_ContactUs" Width="1.5" PointX="13.375" PointY="6.75" />
-        <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Users" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Users" Width="1.5" PointX="0.5" PointY="5.625" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Auctions_Tbl_Users" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_ConfEmail_Tbl_Users" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_ConfMobile_Tbl_Users" />
-        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Products_Tbl_Users1" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Sales_Tbl_Users" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Users" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Filters" Width="1.5" PointX="1" PointY="15.5" />
         <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Filters_Products" Width="1.5" PointX="3.25" PointY="11.5" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Filters_Products_Tbl_Filters1" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Filters_Tbl_GroupFilters" />
+        <EntityTypeShape EntityType="EsamShopDBModel.Tbl_ProductPics" Width="1.5" PointX="5.875" PointY="19.375" />
+        <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Products" Width="1.5" PointX="3.625" PointY="0.75" />
+        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Auctions_Tbl_Products" />
+        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Products_Tbl_Users" />
+        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Comment_Tbl_Products" />
         <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Filters_Products_Tbl_Filters" />
-      </Diagram>
+        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_ProductPics_Tbl_Products" />
+        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Products_Tbl_Users1" />
+        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Sales_Tbl_Products" />
+        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Products" />
+        <EntityTypeShape EntityType="EsamShopDBModel.Tbl_Messages" Width="1.5" PointX="2.75" PointY="19.375" />
+        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Messages_Tbl_Users" />
+        <AssociationConnector Association="EsamShopDBModel.FK_Tbl_Messages_Tbl_Users1" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

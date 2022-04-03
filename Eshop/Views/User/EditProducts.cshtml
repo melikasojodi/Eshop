@@ -25,6 +25,7 @@
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+                @Html.HiddenFor(Model=>Model.ID)
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -111,6 +112,8 @@
                         <input onclick="GetFilterForm()" type="button" id="Btn_AddFilter" value="اعمال فیلترها" />
 
                     </div>
+
+
                 </div>
 
                 <div id="Filters" style="margin:5p;padding:5px;border:1px solid green;">
@@ -118,7 +121,7 @@
                         @{
                             foreach (var item in Model.Tbl_Filters_Products)
                             {
-                                <li style="margin-top:10px;"><span>@item.Tbl_Filters.Title</span><span style="background-color:red;">@Ajax.ActionLink("x","DelFilter","User",new AjaxOptions {Confirm="آیا مطمئن به حذف هستید؟" , HttpMethod="Post",InsertionMode=InsertionMode.Replace,UpdateTargetId="Filters" })</span></li>
+                                <li style="margin-top:10px;"><span>@item.Tbl_Filters.Title</span><span style="background-color:red;">@Ajax.ActionLink("X", "DelFilter", "User", new { id = item.FilterID, ProductID = Model.ID }, new AjaxOptions { Confirm = "ایا مطمعن به حذف هستید؟", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "Filters" })</span></li>
 
                             }
                         }
@@ -127,8 +130,29 @@
                     </ul>
                 </div>
                 <div id="InsertFilters">
-                 
+
                 </div>
+
+
+
+                <div class="form-group">
+                    <div id="Picture" class="col-md-10">
+                        <ul>
+                            @foreach (var item in Model.Tbl_ProductPics)
+                            {
+                                <li>
+                                    <span><img style="width:150px; height:150px;" src="/Content/Pics/ProductsPic/@item.PicName" /></span>
+                                    <span>@Ajax.ActionLink("x", "DelPic", "User", new { id = item.ID , ProductID=Model.ID}, new AjaxOptions { Confirm = "آیا مطمئن به حذف هستید؟", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "Picture" })</span>
+                                </li>
+
+                            }
+
+                        </ul>
+
+                    </div>
+                </div>
+
+
 
                 <div style='margin:5px;padding:5px;direction:rtl;text-align:right;border:1px solid #0bb86d; border-right:5px;'>
                     <div id="DivUploadPic">

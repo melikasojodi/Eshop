@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -757,6 +760,10 @@
     <Content Include="Views\Shared\P_Filters.cshtml" />
     <Content Include="Views\User\ManageProducts.cshtml" />
     <Content Include="Views\User\EditProducts.cshtml" />
+    <Content Include="Views\User\ManageMessages.cshtml" />
+    <Content Include="Views\User\DetailsMessage.cshtml" />
+    <Content Include="Views\User\SendMessage.cshtml" />
+    <Content Include="Views\User\ReadedMessage.cshtml" />
     <None Include="Web References\EshopSendSms\SendReceive.disco" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Index.cshtml" />
@@ -818,6 +825,9 @@
     <Compile Include="Models\Domain\Tbl_Menu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Domain\Tbl_Messages.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Domain\Tbl_Payments.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -849,11 +859,13 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MetaData\MetaDataContactUs.cs" />
+    <Compile Include="Models\MetaData\MetaDataMessage.cs" />
     <Compile Include="Models\MetaData\MetaDataProduct.cs" />
     <Compile Include="Models\MetaData\UserMetaData.cs" />
     <Compile Include="Models\Repository\RepositoryProduct.cs" />
     <Compile Include="Models\Repository\RepositorySetting.cs" />
     <Compile Include="Models\Struct\ShopingCart.cs" />
+    <Compile Include="Models\Utility\Mozayede.cs" />
     <Compile Include="Models\Utility\UtilityFuncs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

@@ -28,6 +28,8 @@ namespace Eshop
             ViewBag.LoginStyle = TempData["LoginStyle"] != null ? TempData["LoginStyle"].ToString() : "";
 
             //Session["UserName"] = "Seller";
+
+            Mozayede.PayanMozayede();
             return View(Rep_Product.GetListproduct());
         }
 
@@ -120,11 +122,20 @@ namespace Eshop
         }
         public ActionResult Products(int ID)
         {
-            var q = from a in db.Tbl_Products
-                    where a.ID == ID
-                    select a;
+            var q = (from a in db.Tbl_Products
+                    where a.ID == ID && (a.DateEnd != null ? a.DateEnd > DateTime.Now : 1 == 1)&&
+                    (a.DateEnd != null ? a.ExistCount>0: 1 == 1)
 
-            return View(q.SingleOrDefault());
+                     select a).SingleOrDefault();
+
+
+            q.Visit = q.Visit + 1;
+
+            db.Tbl_Products.Attach(q);
+            db.Entry(q).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+             
+            return View(q);
         }
 
         [HttpPost]
@@ -512,6 +523,8 @@ namespace Eshop
                         //t.TransNo= trans_id;
                         t.UserID = item.Tbl_ShopingCart.UserID;
                         LstSalest.Add(t);
+
+
                     }
 
 
@@ -540,7 +553,17 @@ namespace Eshop
 
                     }
 
+                    foreach (var item in LstSalest)
+                    {
+                        var qProduct = (from a in db.Tbl_Products
+                                 where a.ID.Equals(item.ProductID)
+                                 select a).SingleOrDefault();
 
+                        qProduct.ExistCount = qProduct.ExistCount - item.Count;
+                        db.Tbl_Products.Attach(qProduct);
+                        db.Entry(qProduct).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
 
                     var qSales = db.Tbl_Sales.Where(a => a.TransNo.Equals(trans_id));
                     return View(qSales);

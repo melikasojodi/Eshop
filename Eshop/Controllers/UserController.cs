@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CaptchaMvc;
+using CaptchaMvc.HtmlHelpers;
 
 namespace Eshop.Controllers
 {
@@ -157,13 +159,13 @@ namespace Eshop.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult InsertProduct(Tbl_Products t, HttpPostedFileBase IndexPic, int[] FilterItem, HttpPostedFileBase[] Image, int Mozayedeh = 0)
+        public ActionResult InsertProduct(Tbl_Products t, HttpPostedFileBase IndexPic, int[] FilterItem, HttpPostedFileBase[] Image, int Mozayde = 0)
         {
             if (Session["UserName"] == null)
                 return RedirectToAction("Index", "Home");
             if (!ModelState.IsValid)
             {
-                ViewBag.Message = "تمامی فیلد ها را پر نمایید";
+                ViewBag.Message = "تمامی فیلد ها را ب درستی پر نمایید";
                 ViewBag.style = "color:red;";
                 return View();
             }
@@ -177,56 +179,39 @@ namespace Eshop.Controllers
 
             //foreach (var item in Image)
             //{
-            //    بررسی item  از لحاظ حجم و قالب
-            //    پیش از اینکه داخل دیتابیس ثبت شوند
+            //    // برسی Item از لحاظ حجم و قالب
+            //    // پیش از اینکه داخل دیتابیس ثبت شوند
             //}
 
-
             t.Date = DateTime.Now;
-
-
-
-            if (Mozayedeh == 1)
-
+            if (Mozayde == 1)
                 t.DateEnd = t.Date.AddDays(3);
 
-
-
             string UserName = Session["UserName"].ToString();
+
             t.UserId = db.Tbl_Users.Where(a => a.UserName.Equals(UserName)).SingleOrDefault().ID;
             t.Visit = 0;
-
             Random rnd = new Random();
-
-            //یررسی indexpic از لحاظ حجم و قالب
-
+            // برسی IndexPic از لحاظ حجم و قالب
             t.Image = rnd.Next().ToString() + ".jpg";
-
             IndexPic.SaveAs(Server.MapPath("~") + "Content/Pics/ProductsPic/" + t.Image);
-            t.Image = IndexPic.FileName;
-
 
             db.Tbl_Products.Add(t);
             db.SaveChanges();
 
             int ProductID = db.Tbl_Products.OrderByDescending(a => a.ID).FirstOrDefault().ID;
 
-
-            List<Tbl_ProductPics> lstpic = new List<Tbl_ProductPics>();
-
+            List<Tbl_ProductPics> lstPic = new List<Tbl_ProductPics>();
             foreach (var item in Image)
             {
                 Tbl_ProductPics tp = new Tbl_ProductPics();
                 tp.PicName = rnd.Next().ToString() + ".jpg";
                 item.SaveAs(Path.Combine(Server.MapPath("~") + "Content/Pics/ProductsPic/" + tp.PicName));
                 tp.ProductID = ProductID;
-
-
-                lstpic.Add(tp);
-
+                lstPic.Add(tp);
             }
 
-            db.Tbl_ProductPics.AddRange(lstpic.AsEnumerable());
+            db.Tbl_ProductPics.AddRange(lstPic.AsEnumerable());
 
 
             if (FilterItem != null)
@@ -240,17 +225,17 @@ namespace Eshop.Controllers
                     tf.ProductID = ProductID;
 
                     LstFilter.Add(tf);
-
                 }
+
                 db.Tbl_Filters_Products.AddRange(LstFilter.AsEnumerable());
 
             }
+
             if (Convert.ToBoolean(db.SaveChanges()))
             {
                 ViewBag.Message = "با موفقیت ثبت شد";
                 ViewBag.style = "color:green;";
                 return View();
-
             }
             else
             {
@@ -260,6 +245,7 @@ namespace Eshop.Controllers
             }
 
         }
+
 
         [HttpGet]
 
@@ -275,7 +261,7 @@ namespace Eshop.Controllers
 
                 var q = db.Tbl_Products.Where(a => a.Tbl_Users.UserName.Equals(UserName) && a.ID.Equals(id)).SingleOrDefault();
 
-                if (q!=null)
+                if (q != null)
                 {
 
                     return View(q);
@@ -286,14 +272,107 @@ namespace Eshop.Controllers
                     return Content("مشکلی در اجرای درخواست شما پیش امد");
                 }
             }
-            catch 
+            catch
             {
                 return Content("مشکلی در اجرای درخواست شما پیش امد");
 
             }
         }
 
+        [HttpPost]
+        public ActionResult EditProducts(Tbl_Products t, HttpPostedFileBase IndexPic, int[] FilterItem, HttpPostedFileBase[] Image)
+        {
+            try
+            {
+                if (Session["UserName"] == null)
+                    return RedirectToAction("Index", "Home");
 
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Message = "تمای فیلد ها را پر نمایید";
+                    ViewBag.Style = "Color:red;";
+                    return View(t);
+                }
+
+                string UserName = Session["UserName"].ToString();
+                var q = db.Tbl_Products.Where(a => a.ID.Equals(t.ID) && a.Tbl_Users.UserName.Equals(UserName)).SingleOrDefault();
+                Random rnd = new Random();
+                if (q != null)
+                {
+                    q.Description = t.Description;
+                    q.ExistCount = t.ExistCount;
+                    q.Price = t.Price;
+                    q.Text = t.Text;
+                    q.Title = t.Title;
+                    q.TopicID = t.TopicID;
+                    q.Weight = t.Weight;
+
+                    if (IndexPic != null)
+                    {
+                        // برسی IndexPic از لحاظ حجم و قالب
+                        q.Image = rnd.Next().ToString() + ".jpg";
+                        IndexPic.SaveAs(Server.MapPath("~") + "Content/Pics/ProductsPic/" + q.Image);
+                    }
+
+                    if (Image != null)
+                    {
+                        List<Tbl_ProductPics> lstPic = new List<Tbl_ProductPics>();
+                        foreach (var item in Image)
+                        {
+                            // برسی Item از لحاظ حجم و قالب
+                            Tbl_ProductPics tp = new Tbl_ProductPics();
+                            tp.PicName = rnd.Next().ToString() + ".jpg";
+                            item.SaveAs(Path.Combine(Server.MapPath("~") + "Content/Pics/ProductsPic/" + tp.PicName));
+                            tp.ProductID = q.ID;
+                            lstPic.Add(tp);
+                        }
+
+                        db.Tbl_ProductPics.AddRange(lstPic.AsEnumerable());
+                    }
+
+                    if (FilterItem != null)
+                    {
+                        List<Tbl_Filters_Products> LstFiletr = new List<Tbl_Filters_Products>();
+                        foreach (var item in FilterItem)
+                        {
+                            Tbl_Filters_Products tf = new Tbl_Filters_Products();
+                            tf.ProductID = q.ID;
+                            tf.FilterID = item;
+
+                            LstFiletr.Add(tf);
+                        }
+
+                        db.Tbl_Filters_Products.AddRange(LstFiletr.AsEnumerable());
+                    }
+
+                    db.Tbl_Products.Attach(q);
+                    db.Entry(q).State = System.Data.Entity.EntityState.Modified;
+
+                    if (Convert.ToBoolean(db.SaveChanges()))
+                    {
+                        return RedirectToAction("ManageProducts", "User");
+                    }
+                    else
+                    {
+
+                        ViewBag.Message = "متاسفانه ثبت نشد";
+                        ViewBag.Style = "Color:red;";
+                        return View(t);
+                    }
+
+                }
+                else
+                {
+                    // کاربر عملیات هک را انجام داده است.
+                    return RedirectToAction("ManageProducts", "User");
+                }
+            }
+            catch
+            {
+
+                return Content("مشکلی در اجرای درخواست شما پیش آمد");
+            }
+        }
 
 
 
@@ -378,7 +457,7 @@ namespace Eshop.Controllers
 
                 }
             }
-            catch 
+            catch
             {
 
                 return Content("مشکلی در اجرای درخواست شما پیش امد");
@@ -386,37 +465,310 @@ namespace Eshop.Controllers
         }
 
 
-        public ActionResult DelFilter(int id,int ProductID)
+        [HttpPost]
+        public string DelFilter(int id, int ProductID)
         {
             try
             {
                 if (Session["UserName"] == null)
-                    return RedirectToAction("Index","Home");
+                    return "";
 
                 string UserName = Session["UserName"].ToString();
 
                 var q = db.Tbl_Products.Where(a => a.Tbl_Users.UserName.Equals(UserName) && a.ID.Equals(ProductID)).SingleOrDefault();
 
-                if (q!=null)
+                if (q != null)
                 {
                     var q2 = q.Tbl_Filters_Products.Where(a => a.FilterID.Equals(id) && a.ProductID.Equals(ProductID)).SingleOrDefault();
 
                     db.Tbl_Filters_Products.Remove(q2);
                     db.SaveChanges();
-                    return View();
+                    string Template = "<ul>";
+                    foreach (var item in q.Tbl_Filters_Products)
+                    {
+                        Template += "<li style='margin-top:10px;'><span>" + item.Tbl_Filters.Title + "</span><span style='background-color:red;'><a href='/User/DelFilter/" + item.FilterID + "?ProductID=" + ProductID + "' data-ajax-update='#Filters' data-ajax-mode='replace' data-ajax-method='POST' data-ajax-confirm='ایا مطمعن به حذف هستید؟' data-ajax='true'>X</a></span></li>";
+                    }
+                    Template += "</ul>";
+                    return Template;
                 }
                 else
                 {
-                    return Content("مشکلی در اجرای درخواست شما پیش امد");
+                    return "مشکلی در اجرای درخواست شما پیش آمد";
+                }
+
+            }
+            catch
+            {
+
+                return "مشکلی در اجرای درخواست شما پیش آمد";
+            }
+        }
+
+
+
+        [HttpPost]
+        public string DelPic(int id, int ProductID)
+        {
+
+            try
+            {
+                if (Session["UserName"] == null)
+                    return "";
+
+                string UserName = Session["UserName"].ToString();
+
+                var q = (from a in db.Tbl_Products
+                         where a.Tbl_Users.UserName.Equals(UserName) && a.ID.Equals(ProductID)
+                         select a).SingleOrDefault();
+
+                if (q != null)
+                {
+                    var q2 = q.Tbl_ProductPics.Where(a => a.ID.Equals(id)).SingleOrDefault();
+
+                    db.Tbl_ProductPics.Remove(q2);
+                    db.SaveChanges();
+
+                    string Template = "<ul>";
+
+                    foreach (var item in q.Tbl_ProductPics)
+                    {
+                        Template += "<li><span><img style='width:150px;height:150px;' src='/Content/Pics/ProductsPic/" + item.PicName + "' /></span><span><a href='/User/DelPic/" + item.ID + "?ProductID=" + ProductID + "' data-ajax-update='#Picture' data-ajax-mode='replace' data-ajax-method='POST' data-ajax-confirm='آیا مطمعن به حذف هستید؟' data-ajax='true'>X</a></span></li>";
+                    }
+
+                    Template += "</ul>";
+
+                    return Template;
+                }
+                else
+                {
+                    return "مشکلی در اجرای درخواست شما پیش آمد";
+
                 }
             }
-            catch 
+            catch
             {
-                return Content("مشکلی در اجرای درخواست شما پیش امد");
+
+                return "مشکلی در اجرای درخواست شما پیش آمد";
 
             }
         }
-           
 
+        public ActionResult StartAuc(int id)
+        {
+            if (Session["UserName"] == null)
+
+                return RedirectToAction("Index", "Home");
+
+            string UserName = Session["UserName"].ToString();
+
+            DateTime? dt = DateTime.Now;
+            //var q = (from a in db.Tbl_Products
+            //         //where a.Tbl_Users.Equals(UserName) //&& a.ID.Equals(id) //&& (a.DateEnd != null ? a.DateEnd < dt : 1 == 1)
+            //         select a).SingleOrDefault();
+
+            var q = db.Tbl_Products.Where(a => a.ID == id && a.Tbl_Users.UserName.Equals(UserName) && (a.DateEnd != null ? a.DateEnd < dt : 1 == 1)).SingleOrDefault();
+
+
+            if (q != null)
+            {
+                q.Date = DateTime.Now;
+                q.DateEnd = q.Date.AddDays(3);
+
+                db.Tbl_Products.Attach(q);
+                db.Entry(q).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageProducts", "User");
+
+            }
+            else
+            {
+                ViewBag.Message = "مشکلی در اجرای درخواست شما پیش آمد";
+                ViewBag.Style = "Color:red";
+                return RedirectToAction("ManageProducts", "User");
+
+            }
+
+
+        }
+
+        public ActionResult ManageMessages(int Page=1)
+        {
+            if (Session["UserName"] == null)
+                return RedirectToAction("Index", "Home");
+
+            string UserName = Session["UserName"].ToString();
+
+            int take = 5;
+            int Skip = (Page * take) - take;
+
+            var q = (from a in db.Tbl_Messages
+                     where a.Tbl_Users.UserName.Equals(UserName)
+                     orderby a.ID descending
+                     select a).OrderBy(a => a.Read);
+
+            ViewBag.CountPoduct = q.Count();
+            ViewBag.Take = take;
+
+            return View(q.Skip(Skip).Take(take));
+        }
+
+        [HttpPost]
+        public JsonResult ValidUserName(string UserGet)
+        {
+            try
+            {
+                var q = db.Tbl_Users.Where(a => a.UserName.Equals(UserGet));
+
+                if (q == null)
+
+                    return Json(false);
+                else
+
+                    return Json(true);
+            }
+            catch 
+            {
+                return Json(false);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult DetailsMessage(int id)
+        {
+            if (Session["UserName"] == null)
+                return RedirectToAction("Index", "Home");
+
+            string UserName = Session["UserName"].ToString();
+
+            var q = (from a in db.Tbl_Messages
+                    where a.ID.Equals(id) && a.Tbl_Users.UserName.Equals(UserName)
+                    select a).SingleOrDefault();
+
+            if (q == null)
+               return RedirectToAction("ManageMessages", "User");
+            else
+            {
+                q.Read = true;
+                db.Tbl_Messages.Attach(q);
+                db.Entry(q).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return View(q);
+            }
+               
+            
+        }
+
+        public ActionResult DeleteMessage(int id)
+        {
+            if (Session["UserName"] == null)
+                return RedirectToAction("Index", "Home");
+
+            string UserName = Session["UserName"].ToString();
+
+            var q = (from a in db.Tbl_Messages
+                     where a.ID.Equals(id) && a.Tbl_Users.UserName.Equals(UserName)
+                     select a).SingleOrDefault();
+
+            if (q == null)
+                return RedirectToAction("ManageMessages", "User");
+            else
+            {
+                db.Tbl_Messages.Remove(q);
+                db.SaveChanges();
+
+                return RedirectToAction("ManageMessages", "User");
+
+            }
+
+
+        }
+
+        [HttpGet]
+
+        public ActionResult SendMessage()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult SendMessage(Tbl_Messages t, string UserNameGet)
+        {
+
+            if(ModelState.IsValid)
+            {
+                if (!this.IsCaptchaValid("Eror"))
+                {
+                    ViewBag.Message = "کد تصویر اشتباه است ";
+                    ViewBag.Style = "Color:red;";
+
+                    return View();
+                }
+
+            if (Session["UserName"] == null)
+                return RedirectToAction("Index", "Home");
+
+            string UserName = Session["UserName"].ToString();
+
+            Tbl_Messages tm = new Tbl_Messages();
+
+
+            tm.Message = t.Message;
+            tm.Title = t.Title;
+            tm.UserGet = db.Tbl_Users.Where(a => a.UserName.Equals(UserNameGet)).SingleOrDefault().ID;
+            tm.Date = DateTime.Now;
+            tm.Read = false;
+            tm.UserSend= db.Tbl_Users.Where(a => a.UserName.Equals(UserName)).SingleOrDefault().ID;
+
+            db.Tbl_Messages.Add(tm);
+
+
+            if (Convert.ToBoolean(db.SaveChanges()))
+            {
+                ViewBag.Message = "پیام با موفقیت ارسال شد";
+                ViewBag.Style = "Color:green;";
+
+                    return RedirectToAction("ReadedMessage", "User");
+            }
+            else
+            {
+                ViewBag.Message = "متاسفانه پیام ارسال نشد ";
+                ViewBag.Style = "Color:red;";
+
+                return View();
+            }
+
+            }
+            else
+            {
+                ViewBag.Message = "تمامی فیلد ها را با دقت پر نمایید";
+                ViewBag.Style = "Color:red;";
+
+                return View();
+
+            }
+
+        }
+
+       
+
+
+
+
+        [HttpGet]
+        public ActionResult ReadedMessage()
+        {
+
+            if (Session["UserName"] == null)
+                return RedirectToAction("Index", "Home");
+
+            string UserName = Session["UserName"].ToString();
+
+            var q = db.Tbl_Messages.Where(a => a.Tbl_Users1.UserName.Equals(UserName));
+
+
+            return View(q);
+
+        }
     }
 }

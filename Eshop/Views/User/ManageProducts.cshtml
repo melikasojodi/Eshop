@@ -47,6 +47,8 @@
                         string Style = "";
                         if (item.ExistCount <= 0)
                         { Style = "background-color:red;"; }
+                        if (item.DateEnd <= DateTime.Now)
+                        { Style = "background-color:yellow;"; }
                         <tr style="@Style">
                             <td>
                                 @Html.DisplayFor(modelItem => item.Title)
@@ -61,8 +63,10 @@
                                 @Html.ActionLink("ویرایش", "EditProducts", new { id = item.ID }) |
                                 @Html.ActionLink("نمایش", "Products", "Home", new { id = item.ID }, new { Style = "" }) |
                                 @Html.ActionLink("حذف", "DelProducts", new { id = item.ID })
-                            </td>
-                        </tr>
+                                @if (item.DateEnd < DateTime.Now) { <span>@Html.ActionLink("شروع مزایده", "StartAuc", new { id = item.ID })</span>}
+                                </td>
+    
+                            </tr>
                     }
                 </table>
 

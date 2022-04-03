@@ -20,7 +20,7 @@ else
         <div id="postcontainer">
             <div class="post-7 post type-post status-publish format-standard hentry category-1 tag-salam tag-17 tag-19" id="post-7">
                 <h1 class="title">
-                    <span>@Model.Title</span><br /><span class="date">@u.ToShamsi(Model.Date).ToShortDateString()</span>
+                    <span>@Model.Title</span><br /><span class="date">@u.ToShamsi(Model.Date).ToShortDateString()</span><br/><span>تعداد بازدید: @Model.Visit</span>
                 </h1>
                 <p>@Html.Raw(Model.Text)</p>
             </div>

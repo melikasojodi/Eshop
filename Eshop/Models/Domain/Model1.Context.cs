@@ -46,5 +46,6 @@ namespace Eshop.Models.Domain
         public virtual DbSet<Tbl_Users> Tbl_Users { get; set; }
         public virtual DbSet<Tbl_Filters> Tbl_Filters { get; set; }
         public virtual DbSet<Tbl_Filters_Products> Tbl_Filters_Products { get; set; }
+        public virtual DbSet<Tbl_Messages> Tbl_Messages { get; set; }
     }
 }

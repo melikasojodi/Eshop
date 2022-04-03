@@ -112,6 +112,18 @@
           <Property Name="Sort" Type="int" Nullable="false" />
           <Property Name="Link" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Tbl_Messages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserGet" Type="int" Nullable="false" />
+          <Property Name="UserSend" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Read" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Tbl_Payments">
           <Key>
             <PropertyRef Name="ID" />
@@ -389,6 +401,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_Messages_Tbl_Users">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1" />
+          <End Role="Tbl_Messages" Type="Self.Tbl_Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Messages">
+              <PropertyRef Name="UserGet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Messages_Tbl_Users1">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="0..1" />
+          <End Role="Tbl_Messages" Type="Self.Tbl_Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Messages">
+              <PropertyRef Name="UserSend" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_ProductPics_Tbl_Products">
           <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="1" />
           <End Role="Tbl_ProductPics" Type="Self.Tbl_ProductPics" Multiplicity="*" />
@@ -511,6 +547,7 @@
           <EntitySet Name="Tbl_GroupFilters" EntityType="Self.Tbl_GroupFilters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_GroupFilters_Categories" EntityType="Self.Tbl_GroupFilters_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Menu" EntityType="Self.Tbl_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Messages" EntityType="Self.Tbl_Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Payments" EntityType="Self.Tbl_Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_ProductPics" EntityType="Self.Tbl_ProductPics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Products" EntityType="Self.Tbl_Products" Schema="dbo" store:Type="Tables" />
@@ -568,6 +605,14 @@
           <AssociationSet Name="FK_Tbl_GroupFilters_Tbl_GroupFilters" Association="Self.FK_Tbl_GroupFilters_Tbl_GroupFilters">
             <End Role="Tbl_GroupFilters" EntitySet="Tbl_GroupFilters" />
             <End Role="Tbl_GroupFilters1" EntitySet="Tbl_GroupFilters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Messages_Tbl_Users" Association="Self.FK_Tbl_Messages_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Messages" EntitySet="Tbl_Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Messages_Tbl_Users1" Association="Self.FK_Tbl_Messages_Tbl_Users1">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Messages" EntitySet="Tbl_Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_ProductPics_Tbl_Products" Association="Self.FK_Tbl_ProductPics_Tbl_Products">
             <End Role="Tbl_Products" EntitySet="Tbl_Products" />
@@ -992,6 +1037,15 @@
             <End Role="Tbl_Products" EntitySet="Tbl_Products" />
             <End Role="Tbl_Filters_Products" EntitySet="Tbl_Filters_Products" />
           </AssociationSet>
+          <EntitySet Name="Tbl_Messages" EntityType="EsamShopDBModel.Tbl_Messages" />
+          <AssociationSet Name="FK_Tbl_Messages_Tbl_Users" Association="EsamShopDBModel.FK_Tbl_Messages_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Messages" EntitySet="Tbl_Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Messages_Tbl_Users1" Association="EsamShopDBModel.FK_Tbl_Messages_Tbl_Users1">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Messages" EntitySet="Tbl_Messages" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Tbl_GroupFilters_Categories_Tbl_GroupFilters">
           <End Type="EsamShopDBModel.Tbl_GroupFilters" Role="Tbl_GroupFilters" Multiplicity="1" />
@@ -1122,6 +1176,8 @@
           <NavigationProperty Name="Tbl_Products" Relationship="EsamShopDBModel.FK_Tbl_Products_Tbl_Users1" FromRole="Tbl_Users" ToRole="Tbl_Products" />
           <NavigationProperty Name="Tbl_Sales" Relationship="EsamShopDBModel.FK_Tbl_Sales_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_Sales" />
           <NavigationProperty Name="Tbl_ShopingCart" Relationship="EsamShopDBModel.FK_Tbl_ShopingCart_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_ShopingCart" />
+          <NavigationProperty Name="Tbl_Messages" Relationship="EsamShopDBModel.FK_Tbl_Messages_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_Messages" />
+          <NavigationProperty Name="Tbl_Messages1" Relationship="EsamShopDBModel.FK_Tbl_Messages_Tbl_Users1" FromRole="Tbl_Users" ToRole="Tbl_Messages" />
         </EntityType>
         <Association Name="FK_Tbl_Auctions_Tbl_Users">
           <End Type="EsamShopDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="1" />
@@ -1252,6 +1308,44 @@
             </Principal>
             <Dependent Role="Tbl_Filters_Products">
               <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_Messages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserGet" Type="Int32" Nullable="false" />
+          <Property Name="UserSend" Type="Int32" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Read" Type="Boolean" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tbl_Users" Relationship="EsamShopDBModel.FK_Tbl_Messages_Tbl_Users" FromRole="Tbl_Messages" ToRole="Tbl_Users" />
+          <NavigationProperty Name="Tbl_Users1" Relationship="EsamShopDBModel.FK_Tbl_Messages_Tbl_Users1" FromRole="Tbl_Messages" ToRole="Tbl_Users" />
+        </EntityType>
+        <Association Name="FK_Tbl_Messages_Tbl_Users">
+          <End Type="EsamShopDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="1" />
+          <End Type="EsamShopDBModel.Tbl_Messages" Role="Tbl_Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Messages">
+              <PropertyRef Name="UserGet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Messages_Tbl_Users1">
+          <End Type="EsamShopDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="0..1" />
+          <End Type="EsamShopDBModel.Tbl_Messages" Role="Tbl_Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Messages">
+              <PropertyRef Name="UserSend" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1514,6 +1608,19 @@
               <MappingFragment StoreEntitySet="Tbl_Filters_Products">
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="FilterID" ColumnName="FilterID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Messages">
+            <EntityTypeMapping TypeName="EsamShopDBModel.Tbl_Messages">
+              <MappingFragment StoreEntitySet="Tbl_Messages">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Read" ColumnName="Read" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UserSend" ColumnName="UserSend" />
+                <ScalarProperty Name="UserGet" ColumnName="UserGet" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
