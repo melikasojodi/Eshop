@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_Products>
+
+@{
+    ViewBag.Title = "مدیریت همه محصولات";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+            <div style="margin:10px; padding:10px; border:1px solid #00ff90; border-radius:5px; text-align:right;">
+
+                <center>
+                    <form action="/User/ManageAllProducts" method="get">
+
+                        <table>
+                            <tr>
+                                <td><input type="text" name="ID" value="" /></td>
+                                <td><input type="submit" value="فیلتر" /></td>
+                            </tr>
+                        </table>
+                    </form>
+                </center>
+            </div>
+
+
+            <table class="table">
+                <tr>
+                    <th style="width:80px;">
+                        @Html.DisplayNameFor(model => model.UserId)
+                    </th>
+                    <th style="width:120px;">
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+
+                    <th style="width:80px;">
+                        @Html.DisplayNameFor(model => model.ExistCount)
+                    </th>
+
+                    <th style="width:100px;">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th style="width:80px;">
+                        @Html.DisplayNameFor(model => model.Visit)
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tbl_Users.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExistCount)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Visit)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("نمایش", "Products", "Home", new { id = item.ID }, new {style="" }) |
+                            @Html.ActionLink("حذف", "DeleteProduct", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>

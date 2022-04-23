@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_GroupFilters>
+
+@{
+    ViewBag.Title = "ManageFilters";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+}
+
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+            <p>
+                @Html.ActionLink("ایجاد دسته اصلی", "CreateCatFilter")
+            </p>
+
+
+            <div id="Filter">
+                @if (Model != null)
+                {
+
+                    //دسته اصلی
+                    <ul>
+                        @foreach (var item in Model.Where(a => a.ParentID == a.ID))
+                        {
+                            <li>
+                                <span>
+                                    @item.Title
+                                    @Html.ActionLink("افزودن دسته ی فرعی", "CreateCatFilter", new { id = item.ID })|
+                                    @Html.ActionLink("ویرایش", "EditCatFilter", new { id = item.ID })|
+                                    @Html.ActionLink("حذف", "DelCatFilter", new { id = item.ID })|
+
+                                </span>
+
+                                @*دسته فرعی*@
+                                <ul>
+
+                                    @foreach (var item2 in Model.Where(a => a.ParentID.Equals(item.ID) && a.ParentID != a.ID))
+                                    {
+                                        <li>
+                                            <span>
+                                                @item2.Title
+                                                @Html.ActionLink("افزودن فیلتر", "CreateFilter", new { id = item2.ID })|
+                                                @Html.ActionLink("ویرایش", "EditCatFilter", new { id = item2.ID })|
+                                                @Html.ActionLink("حذف", "DelCatFilter", new { id = item2.ID })|
+                                            </span>
+                                            @*فیلترها*@
+                                            <ul>
+                                                @{
+                                                    var q = from a in db.Tbl_Filters
+                                                            where a.FilterGroupID.Equals(item2.ID)
+                                                            select a;
+
+                                                    foreach (var item3 in q)
+                                                    {
+                                                        <li>
+                                                            <span>
+                                                                @item3.Title
+                                                                @Html.ActionLink("ویرایش", "EditFilter", new { id = item3.ID })|
+                                                                @Html.ActionLink("حذف", "DelFilter", new { id = item3.ID })|
+                                                            </span>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </li>
+                        }
+
+                    </ul>
+                    <style>
+
+                        #Filter ul {
+                            margin: 5px;
+                            margin-right: 20px;
+                        }
+                    </style>
+                }
+                else
+                {
+                    <p>موردی یافت نشد</p>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@model Eshop.Models.Domain.Tbl_Sales
+
+@{
+    ViewBag.Title = "مشخصات خرید";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+            <div>
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        نام محصول
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Products.Title
+                    </dd>
+
+                    <dt>
+                        مبلغ پرداخت شده
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+
+                    <dt>
+                        تاریخ پرداخت
+                    </dt>
+
+                    <dd>
+                        @{
+                            UtilityFuncs Utility = new UtilityFuncs();
+                        }
+                        @Utility.ToShamsi(Model.Date).ToShortDateString()
+                    </dd>
+
+                    <dt>
+                        وضعیت ارسال
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_StatusType.Title
+                    </dd>
+
+
+                    <dt>
+                        شماره تراکنش
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TransNo)
+                    </dd>
+
+                    <dt>
+                        تعداد
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Count)
+                    </dd>
+
+                    <dt>
+                        کد رهگیری پستی
+                    </dt>
+
+                    <dd>
+                        @if(Model.CodeRahgiri!=null)
+                        { <span>@Model.CodeRahgiri</span>}
+                        else
+                        {
+                            <span>کد رهگیری موجود نیست</span>
+                        }
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+
+                @Html.ActionLink("بازگشت به لیست", "HistoryBuys", "User")
+            </p>
+        </div>
+    </div>
+</div>

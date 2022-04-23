@@ -187,7 +187,7 @@ namespace Eshop
 
 
                 var q = (from a in db.Tbl_Users
-                         where a.UserName.Equals(UserName) && a.Password.Equals(Password) && a.Access.Equals("Seller") && a.Status == true
+                         where a.UserName.Equals(UserName) && a.Password.Equals(Password) /*&& a.Access.Equals("Seller") && a.Status == true*/
                          select a).SingleOrDefault();
 
                 if (q != null)

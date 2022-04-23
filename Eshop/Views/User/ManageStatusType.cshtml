@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_StatusType>
+
+@{
+    ViewBag.Title = "مدیریت وضعیت ها";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+            <p>
+                @Html.ActionLink("افزودن", "CreateStatusType")
+            </p>
+            @if (Model != null)
+            {
+
+
+                <table class="table">
+                    <tr>
+                        <th style="width:170px; height:30px;">
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th style="width: 170px; height: 30px;">
+                            @Html.DisplayNameFor(model => model.Sort)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sort)
+                            </td>
+                            <td>
+                                @Html.ActionLink("ویرایش", "EditStatusType", new { id = item.ID }) |
+                                @Html.ActionLink("حذف", "DeleteStatusType", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            }
+            else
+            {
+                <p>موردی یافت نشد</p>
+            }
+
+        </div>
+    </div>
+</div>

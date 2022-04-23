@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_Slides>
+
+@{
+    ViewBag.Title = "مدیریت اسلاید ها";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+
+            <p>
+                @Html.ActionLink("اسلاید جدید", "CreateSlide")
+            </p>
+
+            @if (Model != null)
+            {
+
+
+                <table class="table">
+                    <tr>
+                        <th style="width:150px;">
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th style="width:210px;">
+                            @Html.DisplayNameFor(model => model.Image)
+                        </th>
+
+                        <th style="width:80px;">
+                            @Html.DisplayNameFor(model => model.Sort)
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                <img src="~/Content/Pics/Slider/@item.Image" style="width:200px;height:100px;" />
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sort)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("ویرایش", "EditSlide", new { id = item.ID }) |
+                                @Html.ActionLink("حذف", "DeleteSlide", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <p>موردی یافت نشد</p>
+            }
+
+        </div>
+    </div>
+</div>

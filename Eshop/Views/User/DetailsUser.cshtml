@@ -1,0 +1,153 @@
+﻿@model Eshop.Models.Domain.Tbl_Users
+
+@{
+    ViewBag.Title = "مشخصات کاربر";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+            <div>
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Access)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Access)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Image)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Image)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Mobile)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Mobile)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BankName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.BankName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ShabaNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ShabaNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Shire)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Shire)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.City)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.City)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PostalCode)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PostalCode)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.phone)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.phone)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NatCode)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NatCode)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </dt>
+
+                    <dd>
+                        @{ UtilityFuncs u = new UtilityFuncs();}
+                        @u.ToShamsi(Model.Date).ToShortDateString();
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("بازگشت به لیست", "ManageUser")
+            </p>
+
+        </div>
+    </div>
+</div>

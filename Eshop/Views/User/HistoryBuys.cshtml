@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_Sales>
+
+@{
+    ViewBag.Title = "تاریخچه خریدها";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+
+@if (Model != null)
+
+{
+    <div id="content">
+        <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+            <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+                <p>
+                    @Html.ActionLink("محصول جدید", "InsertProduct")
+                </p>
+
+                <style>
+                    .table tr th {
+                        width: 120px;
+                    }
+
+                    .table tr td {
+                        text-align: center;
+                    }
+                </style>
+
+                <table class="table">
+                    <tr>
+                        <th style="width:170px;">
+                            نام محصول
+                        </th>
+                        <th>
+                            وضعیت ارسال
+                        </th>
+                        <th>
+                            شماره تراکنش
+                        </th>
+                        <th style="width:80px;">
+                            تعداد
+                        </th>
+                        <th style="width:80px;"></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Tbl_Products.Title
+                            </td>
+                            <td>
+                                @item.Tbl_StatusType.Title
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TransNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Count)
+                            </td>
+                            <td>
+                                @Html.ActionLink("جزییات", "DetailsHistoryBuys", new { id = item.ID }) |
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+                <script>
+                    function Paging(PageNo) {
+
+                        document.getElementById("PageId").value = PageNo;
+                        SubmitForm();
+                    }
+
+                </script>
+                <div id="Paging">
+                    <center>
+                        <ul>
+                            @{
+                                decimal AllProduct = ViewBag.CountPoduct;
+                                decimal Take = ViewBag.Take;
+                                for (int i = 1; i <= Math.Ceiling((decimal)(AllProduct / Take)); i++)
+                                {
+                                    <li><a href="~/User/HistoryBuys/?Page=@i.ToString()">@i.ToString()</a></li>
+                                }
+                            }
+
+                        </ul>
+                    </center>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}
+else
+{
+    <p>موردی وجود ندارد</p>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

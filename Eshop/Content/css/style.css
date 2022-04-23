@@ -3445,7 +3445,7 @@ img.alignleft {
 }
 
 .Slider {
-    border:1px solid red;
+    border: 1px solid red;
     width: 875px;
     height: 300px;
     margin-bottom: 10px;
@@ -3474,12 +3474,12 @@ img.emoji {
 }
 
 
-.number_slideshow li{
-    list-style:none !important;
+.number_slideshow li {
+    list-style: none !important;
 }
 
-.number_slideshow ul{
-    list-style:none;
+.number_slideshow ul {
+    list-style: none;
 }
 
 cufon {
@@ -3519,32 +3519,30 @@ cufon {
             display: none !important;
         }
 }
+
 .FilterBlock {
-    margin-right:20px;
+    margin-right: 20px;
 }
 
-.FilterBlock ul li {
+    .FilterBlock ul li {
+        margin-bottom: 5px;
+    }
 
-    margin-bottom:5px;
+.TablePriceFilter {
+    margin-bottom: 10px;
 }
 
-.TablePriceFilter{
+    .TablePriceFilter input[type=text] {
+        width: 100px;
+        height: 25px;
+        padding: 3px;
+        margin-left: 5px;
+    }
 
-    margin-bottom:10px;
-}
-
-.TablePriceFilter input[type=text] {
-    width: 100px;
+#Paging {
     height: 25px;
-    padding: 3px;
-    margin-left:5px;
-}
-
-#Paging{
-
-    
-    height:25px;
-    text-align:center;direction:ltr;
+    text-align: center;
+    direction: ltr;
 }
 
     #Paging ul li {
@@ -3556,37 +3554,41 @@ cufon {
     }
 
 .ShopingCart {
-    position:fixed; border:2px solid red; border-radius:5px; background-color:white; padding:5px;top:25%;left:35%;width:400px; height:300px;
-    display:none;
-    
+    position: fixed;
+    border: 2px solid red;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    top: 25%;
+    left: 35%;
+    width: 400px;
+    height: 300px;
+    display: none;
 }
 
-.ProductName{
-    width:350px;
+.ProductName {
+    width: 350px;
 }
 
-.Count{
-    width:30px;
+.Count {
+    width: 30px;
 }
 
-.Delete{
-    width:20px;
+.Delete {
+    width: 20px;
 }
 
-#TableProduct tr{
-
-    margin:5px;
-   
+#TableProduct tr {
+    margin: 5px;
 }
 
-.PaymentButton{
-
-    width:100px;
-    height:30px;
-    border-radius:3px;
-    background-color:#1c9409;
-    color:#fffa16;
-    margin:10px;
+.PaymentButton {
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: #1c9409;
+    color: #fffa16;
+    margin: 10px;
 }
 
 
@@ -3595,15 +3597,14 @@ cufon {
     margin-right: 0px;
 }
 
-.col-md-10 input[type=text]{
-
-    width:200px;
-    height:25px;
-    padding:3px;
-    border-radius:3px;
-    border: 2px solid #7db9b2;
-    font-family:Tahoma;
-}
+    .col-md-10 input[type=text] {
+        width: 200px;
+        height: 25px;
+        padding: 3px;
+        border-radius: 3px;
+        border: 2px solid #7db9b2;
+        font-family: Tahoma;
+    }
 
     .col-md-10 input[type=password] {
         width: 200px;
@@ -3622,7 +3623,8 @@ cufon {
         border: 2px solid #7db9b2;
         font-family: Tahoma;
     }
-        .col-md-10 input[type=submit] {
+
+    .col-md-10 input[type=submit] {
         width: 80px;
         height: 25px;
         padding: 3px;
@@ -3640,3 +3642,13 @@ cufon {
         font-family: Tahoma;
     }
 
+
+.dl-horizontal dt {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+dl-horizontal dd {
+    margin: 10px;
+    margin-right: 20px;
+}

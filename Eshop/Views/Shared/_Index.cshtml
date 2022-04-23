@@ -304,15 +304,35 @@
                                     </div>
                                     <hr style="color:#ADADAD;margin-top:20px;width:200px;" />
                                     <ul style="margin-right:50px;">
-                                        <li><a href="~/User/ManageProducts">مدیریت محصولات</a></li>
-                                        <li><a href="~/User/InsertProduct">افزودن محصول</a></li>
+
+                                        @if (Session["Access"].ToString() == "Seller")
+                                        {
+
+
+                                            <li><a href="~/User/ManageProducts">مدیریت محصولات</a></li>
+                                            <li><a href="~/User/ManageComments">مدیریت نظرات کاربران</a></li>
+                                            <li><a href="~/User/InsertProduct">افزودن محصول</a></li>
+                                            <li><a href="~/User/HistoryBuys">تاریخچه خرید ها</a></li>
+                                            <li><a href="~/User/Sales">محصولات به فروش رفته</a></li>
+                                            <li><a href="~/User/SuccssesAuc">مزایدات برنده شده</a></li>
+                                        }
+                                        else if (Session["Access"].ToString() == "Admin")
+                                        {
+                                            <li><a href="~/User/ManageAllProducts">مدیریت محصولات</a></li>
+                                            <li><a href="~/User/ManageMenus">مدیریت منو ها</a></li>
+                                            <li><a href="~/User/ManageSlider">مدیریت اسلایدر</a></li>
+                                            <li><a href="~/User/ManageFilters">مدیریت فیلترها</a></li>
+                                            <li><a href="~/User/ManageStatusType">مدیریت وضعیت های ارسال</a></li>
+                                            <li><a href="~/User/ManageUser">مدیریت کاربران</a></li>
+                                            <li><a href="~/User/Setting">تنظیمات</a></li>
+                                        }
                                         <li><a href="~/User/ManageMessages">مدیریت پیام ها</a></li>
                                         <li><a href="~/User/ReadedMessages">مدیریت نحویل پیام ها</a></li>
                                         <li><a href="~/User/EditProfile">ویرایش پروفایل</a></li>
                                         <li><a href="~/User/Logout">خروج از سایت</a></li>
                                     </ul>
                                 </div>
-                            }
+                                            }
                         </div>
                     </div>
                     @RenderSection("BlockDetailsProducts", required: false)

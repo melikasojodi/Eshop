@@ -1,0 +1,197 @@
+﻿@model Eshop.Models.Domain.Tbl_Sales
+
+@{
+    ViewBag.Title = "مشخصات خرید";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+            <div>
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        نام محصول
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Products.Title
+                    </dd>
+
+                    <dt>
+                        نام کاربری مشتری
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Users.UserName
+                    </dd>
+
+
+                    <dt>
+                        ایمیل مشتری
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Users.Email
+                    </dd>
+
+                    <dt>
+                        نام مشتری
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Users.Name
+                    </dd>
+
+                    <dt>
+                        موبایل مشتری
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Users.Mobile
+                    </dd>
+
+                    <dt>
+                        ادرس کامل مشتری
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Users.Address
+                    </dd>
+
+                    <dt>
+                        نام استان
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Users.Shire
+                    </dd>
+
+                    <dt>
+                        نام شهر
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Users.City
+                    </dd>
+
+                    <dt>
+                        تلفن ثابت مشتری
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Users.phone
+                    </dd>
+
+                    <dt>
+                        قیمت
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+
+                    <dt>
+                        تاریخ
+                    </dt>
+
+                    <dd>
+                        @{
+                            UtilityFuncs u = new UtilityFuncs();
+                        }
+
+                        @u.ToShamsi(Model.Date).ToShortDateString()
+                    </dd>
+
+                    <dt>
+                        وضعیت ارسال
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_StatusType.Title
+                    </dd>
+
+                    <dt>
+                        شماره تراکنش
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TransNo)
+                    </dd>
+
+                    <dt>
+                        تعداد
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Count)
+                    </dd>
+
+                    <dt>
+                        کد رهگیری
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CodeRahgiri)
+                    </dd>
+
+                </dl>
+
+                <div style="margin:5px; padding:5px; border:1px solid #00ff90; border-radius:5px;">
+                    @using (Html.BeginForm("ChangeStatus", "User", FormMethod.Post))
+
+                    {
+
+                        <table>
+                            <tr>
+                                <td>وضعیت سفارش</td>
+                                <td>
+                                    <input type="hidden" name="id" value="@Model.ID" />
+                                    <select name="StatusID">
+
+                                        @{ 
+                                            Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+
+                                            var q = from a in db.Tbl_StatusType
+                                                    orderby a.Sort
+                                                    select a;
+                                        }
+
+                                        @foreach (var item in q)
+                                        {
+                                            string Style = "";
+                                            if (item.ID==Model.StatusID)
+                                            { Style = "selected"; }
+
+                                            <option value="@item.ID" @Style>@item.Title </option>
+                                        }
+
+                                    </select>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>کد رهگیری</td>
+                                <td><input type="text" name="CodeRahgiri" value="@Model.CodeRahgiri" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" value="ثبت ویرایش" /></td>
+                            </tr>
+                        </table>
+
+                    }
+
+                </div>
+            </div>
+            <p>
+
+                @Html.ActionLink("بازگشت به لیست", "Sales", "User")
+            </p>
+
+        </div>
+    </div>
+</div>

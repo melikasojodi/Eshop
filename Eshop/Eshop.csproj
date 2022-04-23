@@ -764,6 +764,31 @@
     <Content Include="Views\User\DetailsMessage.cshtml" />
     <Content Include="Views\User\SendMessage.cshtml" />
     <Content Include="Views\User\ReadedMessage.cshtml" />
+    <Content Include="Views\User\HistoryBuys.cshtml" />
+    <Content Include="Views\User\DetailsHistoryBuys.cshtml" />
+    <Content Include="Views\User\Sales.cshtml" />
+    <Content Include="Views\User\DetailsSales.cshtml" />
+    <Content Include="Views\User\SuccssesAuc.cshtml" />
+    <Content Include="Views\User\ManageComments.cshtml" />
+    <Content Include="Views\User\DetailsComments.cshtml" />
+    <Content Include="Views\User\ManageMenus.cshtml" />
+    <Content Include="Views\User\CreateMenu.cshtml" />
+    <Content Include="Views\User\EditMenu.cshtml" />
+    <Content Include="Views\User\Setting.cshtml" />
+    <Content Include="Views\User\ManageSlider.cshtml" />
+    <Content Include="Views\User\CreateSlide.cshtml" />
+    <Content Include="Views\User\EditSlide.cshtml" />
+    <Content Include="Views\User\ManageFilters.cshtml" />
+    <Content Include="Views\User\CreateCatFilter.cshtml" />
+    <Content Include="Views\User\CreateFilter.cshtml" />
+    <Content Include="Views\User\EditCatFilter.cshtml" />
+    <Content Include="Views\User\EditFilter.cshtml" />
+    <Content Include="Views\User\ManageStatusType.cshtml" />
+    <Content Include="Views\User\CreateStatusType.cshtml" />
+    <Content Include="Views\User\EditStatusType.cshtml" />
+    <Content Include="Views\User\ManageUser.cshtml" />
+    <Content Include="Views\User\DetailsUser.cshtml" />
+    <Content Include="Views\User\ManageAllProducts.cshtml" />
     <None Include="Web References\EshopSendSms\SendReceive.disco" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Index.cshtml" />
@@ -859,8 +884,14 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MetaData\MetaDataContactUs.cs" />
+    <Compile Include="Models\MetaData\MetaDataFilter.cs" />
+    <Compile Include="Models\MetaData\MetaDataGroupFilter.cs" />
+    <Compile Include="Models\MetaData\MetaDataMenus.cs" />
     <Compile Include="Models\MetaData\MetaDataMessage.cs" />
     <Compile Include="Models\MetaData\MetaDataProduct.cs" />
+    <Compile Include="Models\MetaData\MetaDataSetting.cs" />
+    <Compile Include="Models\MetaData\MetaDataSlides.cs" />
+    <Compile Include="Models\MetaData\MetaDataTypeStatus.cs" />
     <Compile Include="Models\MetaData\UserMetaData.cs" />
     <Compile Include="Models\Repository\RepositoryProduct.cs" />
     <Compile Include="Models\Repository\RepositorySetting.cs" />

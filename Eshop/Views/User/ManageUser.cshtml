@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_Users>
+
+@{
+    ViewBag.Title = "مدیریت کاربران";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+            @if (Model != null)
+            {
+
+
+
+                <table class="table">
+                    <tr>
+                        <th style="width:150px;">
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th style="width:150px;">
+                            @Html.DisplayNameFor(model => model.Access)
+                        </th>
+                        <th style="width:150px;">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        
+                        <th style="width:100px;">
+                            @Html.DisplayNameFor(model => model.Shire)
+                        </th>
+                        <th style="width:100px;">
+                            @Html.DisplayNameFor(model => model.City)
+                        </th>
+                       
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        String style = "";
+                        if (item.Status==false)
+
+                        { style = "background-color:#ff0000;"; }
+
+                        <tr style="@style">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Access)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Shire)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.City)
+                            </td>
+                          
+                            <td>
+                                <span> @Html.ActionLink("جزییات", "DetailsUser", new { id = item.ID })|</span> 
+
+
+                               @{if (item.Status == true)
+                                { <span>@Html.ActionLink("غیر فعال", "DisableUser", new { id = item.ID })</span>}
+                                else
+                                { <span>@Html.ActionLink("فعال", "EnableUser", new { id = item.ID })</span>}
+                                }
+
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <p>کاربری وجود ندارد</p>
+            }
+
+        </div>
+    </div>
+</div>

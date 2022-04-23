@@ -1,0 +1,101 @@
+﻿@model Eshop.Models.Domain.Tbl_Comment
+
+@{
+    ViewBag.Title = "مشخصات نظر";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+            <div>
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        نام محصول
+                    </dt>
+
+                    <dd>
+                        @Model.Tbl_Products.Title
+                    </dd>
+
+                    <dt>
+                        پاسخ در جواب:
+                    </dt>
+
+                    <dd>
+                        @{
+                            Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+                            var q = db.Tbl_Comment.Where(a => a.ID.Equals(Model.ParentID)).SingleOrDefault();
+                        }
+
+                        @q.Name
+                    </dd>
+
+                    <dt>
+                        نام نظردهنده
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        ایمیل
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        وب سایت
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.WebSite)
+                    </dd>
+
+                    <dt>
+                        متن نظر
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Text)
+                    </dd>
+
+                    <dt>
+                        تاریخ
+                    </dt>
+
+                    <dd>
+
+                        @{ 
+                            UtilityFuncs u = new UtilityFuncs();
+                        }
+
+                        @u.ToShamsi(Model.Date).ToShortDateString()
+                    </dd>
+
+                    <dt>
+                        آدرس آی پی
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Ip)
+                    </dd>
+
+
+
+                </dl>
+            </div>
+            <p>
+
+                @Html.ActionLink("بازگشت به لیست", "manageComments")
+            </p>
+
+
+        </div>
+    </div>
+</div>

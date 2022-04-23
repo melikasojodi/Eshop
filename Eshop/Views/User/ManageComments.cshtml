@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Eshop.Models.Domain.Tbl_Comment>
+
+@{
+    ViewBag.Title = "ManageComments";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+<div id="content">
+    <div id="posts" class="teal masonry" style="position: relative; height: 182px;">
+
+        <div style="padding:5px;margin:5px;font-family:Tahoma;text-align:right;direction:rtl;">
+
+            <table class="table">
+                <tr style="height:50px;">
+
+                    <th style="width:180px;">
+                        نام محصول
+                    </th>
+                    <th style="width:120px;">
+                        پاسخ به:
+                    </th>
+                    <th style="width:120px;">
+                        نام نظردهنده
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+
+                    string Style = "";
+                    if (item.Confirm_comm == false)
+                    { Style= "font-weight:700;"; }
+
+
+
+                    <tr style="@Style">
+                        <td>
+                            @item.Tbl_Products.Title
+                        </td>
+                        <td>
+                            @{
+                                Eshop.Models.Domain.DataBase db = new Eshop.Models.Domain.DataBase();
+                                var q = db.Tbl_Comment.Where(a => a.ID.Equals(item.ParentID)).SingleOrDefault();
+                            }
+
+                            @q.Name
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+
+                            @Html.ActionLink("جزییات", "DetailsComments", new { id = item.ID }) |
+                            @Html.ActionLink("حذف", "DeleteComments", new { id = item.ID })|
+                            @Html.ActionLink("تایید نظر", "ConfirmComment", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>
